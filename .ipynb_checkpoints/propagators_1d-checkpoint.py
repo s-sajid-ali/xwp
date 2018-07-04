@@ -75,22 +75,22 @@ L_out : the side length of the support at the output plane.
 def prop1FT(u,step,L1,wavel,z,fft_object = None):
     N = np.shape(u)[0]
     k = 2*np.pi/wavel
-    x = np.linspace(-L1/2.0,L1/2.0-step,N)
+    x = np.linspace(-L1/2.0,L1/2.0,N)
     
-    '''
+    
     #Kenan's approach
-    fx = np.fft.fftfreq(M,d=step)
-    fy = np.fft.fftfreq(N,d=step)
-    fx = pyfftw.interfaces.numpy_fft.fftshift(fx)
-    fy = pyfftw.interfaces.numpy_fft.fftshift(fy)
-    FX,FY = da.meshgrid((fx),(fy))
-    c = np.exp((-1j*z*2*np.pi/wavel)*np.sqrt(1+wavel**2*(FX**2+FY**2)))
-    '''
+    f = np.fft.fftfreq(N,d=step)
+    f = np.fft.fftshift(f)
+    #c = np.exp((-1j*z*2*np.pi/wavel)*np.sqrt(1+wavel**2*(f**2)))
+    c = np.exp((-1j*2*np.pi/wavel)*np.sqrt(x**2+z**2))
+    u = u*c
+    
     
     L_out = wavel*z/step
     step2 = wavel*z/L1
     pi = np.pi
-    u  = ne.evaluate('exp((-1j*2*pi/wavel)*sqrt(x**2+z**2))*u')
+    #u  = ne.evaluate('exp(-1j*pi/(wavel)*sqrt(x**2+z**2))*u')
+    
     
     #if fft_object != None :
     #    fft_object.run_fft2(u)
@@ -99,9 +99,9 @@ def prop1FT(u,step,L1,wavel,z,fft_object = None):
     u = np.fft.fftshift(u)
     
     x2 = np.linspace(-L_out/2.0,L_out/2.0,N)
-    u   = ne.evaluate('exp((-1j*2*pi/wavel)*sqrt(x2**2+z**2))*u')
+    u  = ne.evaluate('exp((-1j*2*pi/wavel)*sqrt(x2**2+z**2))*u')
     
-    u = ne.evaluate('u*(1j/(wavel*z))*step')
+    #u = ne.evaluate('u*((1j/(wavel*z)))*step2*step2')
     
     return u,L_out
 
@@ -151,7 +151,7 @@ Propogation using the Impulse Response function. The convention of shiftinng a f
 def propIR(u,step,L,wavel,z,fft_object = None):
     N = np.shape(u)[0]
     k = 2*np.pi/wavel
-    x = np.linspace(-L/2.0,L/2.0-step,M)
+    x = np.linspace(-L/2.0,L/2.0-step,N)
 
     
     h = ne.evaluate('(exp(1j*k*z)/(1j*wavel*z))*exp(1j*k*(1/(2*z))*(x**2))')
@@ -179,4 +179,4 @@ def propIR(u,step,L,wavel,z,fft_object = None):
     
     u = np.fft.ifftshift(u)
     
-    return u
+    return u,L
