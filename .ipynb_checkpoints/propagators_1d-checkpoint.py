@@ -12,7 +12,7 @@ def exact_prop(in_wave,out_wave,L_in,L_out,wavel,z):
     in_domain = np.linspace(-L_in/2,L_in/2,N_in)
     N_out = np.shape(out_wave)[0]
     out_domain = np.linspace(-L_out/2,L_out/2,N_out)
-    step_out = L_out/N_out
+    step_in = L_in/N_in
     for i in range(N_out):
         for j in range(N_in):
             x = in_domain[j]
@@ -20,7 +20,7 @@ def exact_prop(in_wave,out_wave,L_in,L_out,wavel,z):
             x1 = out_domain[i]
             out_wave[i] += f*np.exp((-1j*pi*x*x)/(wavel*z))*np.exp((-1j*2*pi*x*x1)/(wavel*z))
             #out_wave[i] += ne.evaluate('f*exp((-1j*pi*x*x)/(wavel*z))*exp((-1j*2*pi*x*x1)/(wavel*z))')
-    out_wave *= (1/np.sqrt(1j*wavel*z))*step_out
+    out_wave *= (1/np.sqrt(1j*wavel*z))*step_in
     return
 
 
@@ -45,14 +45,8 @@ def propTF(u,step,L1,wavel,z,fft_object = None) :
     pi = np.pi
     F = np.fft.fftfreq(N,step)
     
-    #if fft_object != None :
-    #    fft_object.run_fft2(u)
     u = np.fft.fft(u)
-    
     u = ne.evaluate('exp(-1j*(2*pi*z/wavel)*sqrt(1-wavel**2*(F**2)))*u')
-    
-    #if fft_object != None :
-    #    fft_object.run_ifft2(u)
     u = np.fft.ifft(u)
     
     return u,L1
@@ -76,32 +70,26 @@ def prop1FT(u,step,L1,wavel,z,fft_object = None):
     N = np.shape(u)[0]
     k = 2*np.pi/wavel
     x = np.linspace(-L1/2.0,L1/2.0,N)
+    L_out = wavel*z/step
+    step2 = wavel*z/L1
+    pi = np.pi
     
     
     #Kenan's approach
     f = np.fft.fftfreq(N,d=step)
     f = np.fft.fftshift(f)
     #c = np.exp((-1j*z*2*np.pi/wavel)*np.sqrt(1+wavel**2*(f**2)))
-    c = np.exp((-1j*2*np.pi/wavel)*np.sqrt(x**2+z**2))
-    u = u*c
+    #c = np.exp((-1j*2*np.pi/wavel)*np.sqrt(x**2+z**2))
+    #u = u*c
     
-    
-    L_out = wavel*z/step
-    step2 = wavel*z/L1
-    pi = np.pi
-    #u  = ne.evaluate('exp(-1j*pi/(wavel)*sqrt(x**2+z**2))*u')
-    
-    
-    #if fft_object != None :
-    #    fft_object.run_fft2(u)
-    u = np.fft.fft(u)
-    
+    u  = ne.evaluate('exp(1j*pi/(wavel*z)*(x**2))*u')
+        
+    u = np.fft.fft(u)*step
     u = np.fft.fftshift(u)
     
-    x2 = np.linspace(-L_out/2.0,L_out/2.0,N)
-    u  = ne.evaluate('exp((-1j*2*pi/wavel)*sqrt(x2**2+z**2))*u')
-    
-    #u = ne.evaluate('u*((1j/(wavel*z)))*step2*step2')
+    #x2 = np.linspace(-L_out/2.0,L_out/2.0,N)
+    #u  = ne.evaluate('exp((-1j*2*pi/wavel)*sqrt(x2**2+z**2))*u')
+    u = ne.evaluate('u*(sqrt(1/(1j*wavel*z)))')
     
     return u,L_out
 
@@ -128,17 +116,14 @@ def propFF(u,step,L1,wavel,z,fft_object = None):
     step2 = wavel*z/L1
     n = N #number of samples
     x2 = np.linspace(-L_out/2.0,L_out/2.0,N)
+
+    #c = ne.evaluate('exp(((1j*k)/(2*z))*(x2**2))')
     
-    c =ne.evaluate('exp((1j*k*(1/(2*z)))*(x2**2))')*(1/(1j*wavel*z))
+    u = np.fft.fft(u)*step
     u = np.fft.fftshift(u)
     
-    #if fft_object != None :
-    #    fft_object.run_fft2(u)
-    u = np.fft.fft(u)
-    
-    u = np.fft.ifftshift(u)
-    u = ne.evaluate('c*u')
-    u *= step*step
+    #u = ne.evaluate('c*u')
+    u = u*np.sqrt(1/(1j*wavel*z))
     
     return u,L_out
 
@@ -151,32 +136,17 @@ Propogation using the Impulse Response function. The convention of shiftinng a f
 def propIR(u,step,L,wavel,z,fft_object = None):
     N = np.shape(u)[0]
     k = 2*np.pi/wavel
-    x = np.linspace(-L/2.0,L/2.0-step,N)
+    x = np.linspace(-L/2.0,L/2.0,N)
+    
+    #h = ne.evaluate('(exp(1j*k*z)/(1j*wavel*z))*exp(((1j*k)/(2*z))*(x**2))')
+    #h = np.exp(1j*k*z)*np.exp(((1j*k)/(2*z))*(x**2))
+    h = np.sqrt(1/(1j*wavel*z))*np.exp(((1j*k)/(2*z))*(x**2))
 
-    
-    h = ne.evaluate('(exp(1j*k*z)/(1j*wavel*z))*exp(1j*k*(1/(2*z))*(x**2))')
-    #h_in = pyfftw.empty_aligned((np.shape(h)))
-    h = np.fft.fftshift(h)
-    #h_in = h
-    
-    #if fft_object != None :
-    #    fft_object.run_fft2(h)
-    h = np.fft.fft(h)
-    
-    H = h*step*step
-    
-    u =np.fft.fftshift(u)
-    
-    #if fft_object != None :
-    #    fft_object.run_fft2(u)
+    h = np.fft.fft(np.fft.fftshift(h))*step
+
     u = np.fft.fft(u)
-    
-    u = ne.evaluate('H * u')
-
-    #if fft_object != None :
-    #    fft_object.run_ifft2(u)
+    u *= h
+    #u = ne.evaluate('h * u')
     u = np.fft.ifft(u)
-    
-    u = np.fft.ifftshift(u)
     
     return u,L
