@@ -44,13 +44,15 @@ def propTF(u,step,L1,wavel,z,fft_object = None) :
     
     if fft_object != None :
         fft_object.run_fft2(u)
-    u = np.fft.fft2(u)
+    else :
+        u = np.fft.fft2(u)
     
     u = ne.evaluate('exp(-1j*(2*pi*z/wavel)*sqrt(1-wavel**2*(FX**2+FY**2)))*u')
     
     if fft_object != None :
         fft_object.run_ifft2(u)
-    u = np.fft.ifft2(u)
+    else: 
+        u = np.fft.ifft2(u)
     
     return u,L1
 
@@ -94,7 +96,8 @@ def prop1FT(u,step,L1,wavel,z,fft_object = None):
     
     if fft_object != None :
         fft_object.run_fft2(u)
-    u = np.fft.fft2(u)
+    else:
+        u = np.fft.fft2(u)
     
     u = np.fft.fftshift(u)
     
@@ -139,7 +142,8 @@ def propFF(u,step,L1,wavel,z,fft_object = None):
     
     if fft_object != None :
         fft_object.run_fft2(u)
-    u = np.fft.fft2(u)
+    else:
+        u = np.fft.fft2(u)
     
     u = pyfftw.interfaces.numpy_fft.ifftshift(u)
     u = ne.evaluate('c*u')
@@ -167,7 +171,8 @@ def propIR(u,step,L,wavel,z,fft_object = None):
     
     if fft_object != None :
         fft_object.run_fft2(h)
-    h = np.fft.fft2(h)
+    else:
+        h = np.fft.fft2(h)
     
     H = h*step*step
     
@@ -181,7 +186,8 @@ def propIR(u,step,L,wavel,z,fft_object = None):
 
     if fft_object != None :
         fft_object.run_ifft2(u)
-    u = np.fft.ifft2(u)
+    else:
+        u = np.fft.ifft2(u)
     
     u = np.fft.ifftshift(u)
     
