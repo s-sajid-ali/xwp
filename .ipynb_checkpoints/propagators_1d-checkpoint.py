@@ -18,8 +18,8 @@ def exact_prop(in_wave,out_wave,L_in,L_out,wavel,z):
             x = in_domain[j]
             f = in_wave[j]
             x1 = out_domain[i]
-            out_wave[i] += f*np.exp((-1j*pi*x*x)/(wavel*z))*np.exp((-1j*2*pi*x*x1)/(wavel*z))
-            #out_wave[i] += ne.evaluate('f*exp((-1j*pi*x*x)/(wavel*z))*exp((-1j*2*pi*x*x1)/(wavel*z))')
+            #out_wave[i] += f*np.exp((-1j*pi*x*x)/(wavel*z))*np.exp((-1j*2*pi*x*x1)/(wavel*z))
+            out_wave[i] += ne.evaluate('f*exp((-1j*pi*x*x)/(wavel*z))*exp((-1j*2*pi*x*x1)/(wavel*z))')
     out_wave *= (1/np.sqrt(1j*wavel*z))*step_in
     return
 
