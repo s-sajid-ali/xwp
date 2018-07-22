@@ -7,6 +7,7 @@ Currently implemented :
   - Impulse Response
   - Single Fourier Transform
 - Fraunhofer integral
+
 To be implemented: 
 - Fractional Fourier Transform based wave propagation.
 
