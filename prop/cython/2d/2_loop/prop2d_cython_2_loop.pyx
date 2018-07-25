@@ -40,7 +40,7 @@ cdef double complex add_clean(double complex *arr, int N):
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def exact_prop_2D_cython(double[:,:] in_wave, double complex [:,:] out_wave,\
+def exact_prop_2D_cython(double complex[:,:] in_wave, double complex [:,:] out_wave,\
                         double L_in, double L_out, double x_out_off, double y_out_off,\
                          double wavel, double z, int num_threads):
     
@@ -71,14 +71,15 @@ def exact_prop_2D_cython(double[:,:] in_wave, double complex [:,:] out_wave,\
     cdef double step_in_y = L_in/N_in_y
     
     cdef double complex fac1 = 0.7071067811865476-0.7071067811865476j #np.sqrt(1/1j)
-    cdef double complex fac  = (step_in_x/sqrt(wavel*z))*fac1
+    cdef double complex fac  = (step_in_x/sqrt(wavel*z))*(step_in_y/sqrt(wavel*z))*fac1
     cdef double _temp1
     
     '''
     Declare variables to be used. 
     '''
     cdef long int i,j,p,q,p1,q1
-    cdef double x,x1,y,y1,f
+    cdef double x,x1,y,y1
+    cdef double complex f
     cdef long int [:,:] indices  = np.dstack(np.meshgrid(np.arange(N_in_x),np.arange(N_in_y))).reshape(N_in_t,2)    
     
     '''

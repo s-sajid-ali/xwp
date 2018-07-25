@@ -37,7 +37,7 @@ cdef double complex add_clean(double complex *arr, int N):
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def exact_prop_2D_cython(double[:,:] in_wave, double complex [:,:] out_wave,\
+def exact_prop_2D_cython(double complex [:,:] in_wave, double complex [:,:] out_wave,\
                         double L_in, double L_out, double x_out_off, double y_out_off,\
                          double wavel, double z):
     cdef double pi = 3.14159265359
@@ -65,11 +65,12 @@ def exact_prop_2D_cython(double[:,:] in_wave, double complex [:,:] out_wave,\
     '''
     Declare variables to be used. 
     '''
-    cdef double x,x1,y,y1,f
+    cdef double x,x1,y,y1
+    cdef double complex f
     cdef int i,j,k,p,q
     
     cdef double complex fac1 = 0.7071067811865476-0.7071067811865476j #np.sqrt(1/1j)
-    cdef double complex fac  = (step_in_x/sqrt(wavel*z))*fac1
+    cdef double complex fac  = (step_in_x/sqrt(wavel*z))*(step_in_y/sqrt(wavel*z))*fac1
     cdef double _temp1
     cdef double complex _temp2
     

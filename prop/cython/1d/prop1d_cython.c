@@ -1886,9 +1886,6 @@ static int __Pyx_ValidateAndInit_memviewslice(
                 PyObject *original_obj);
 
 /* ObjectToMemviewSlice.proto */
-static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_ds_double(PyObject *, int writable_flag);
-
-/* ObjectToMemviewSlice.proto */
 static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_ds___pyx_t_double_complex(PyObject *, int writable_flag);
 
 /* CIntToPy.proto */
@@ -2073,7 +2070,6 @@ static void __pyx_memoryview_slice_assign_scalar(__Pyx_memviewslice *, int, size
 static void __pyx_memoryview__slice_assign_scalar(char *, Py_ssize_t *, Py_ssize_t *, int, size_t, void *); /*proto*/
 static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *, PyObject *); /*proto*/
 static __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_5numpy_float64_t = { "float64_t", NULL, sizeof(__pyx_t_5numpy_float64_t), { 0 }, 0, 'R', 0, 0 };
-static __Pyx_TypeInfo __Pyx_TypeInfo_double = { "double", NULL, sizeof(double), { 0 }, 0, 'R', 0, 0 };
 static __Pyx_TypeInfo __Pyx_TypeInfo___pyx_t_double_complex = { "double complex", NULL, sizeof(__pyx_t_double_complex), { 0 }, 0, 'C', 0, 0 };
 #define __Pyx_MODULE_NAME "prop1d_cython"
 extern int __pyx_module_is_main_prop1d_cython;
@@ -2173,7 +2169,7 @@ static const char __pyx_k_itemsize_0_for_cython_array[] = "itemsize <= 0 for cyt
 static const char __pyx_k_ndarray_is_not_C_contiguous[] = "ndarray is not C contiguous";
 static const char __pyx_k_unable_to_allocate_array_data[] = "unable to allocate array data.";
 static const char __pyx_k_strided_and_direct_or_indirect[] = "<strided and direct or indirect>";
-static const char __pyx_k_Cythonized_exact_propagation_in[] = "\nCythonized exact propagation in 1D.  \n";
+static const char __pyx_k_Cythonized_exact_propagation_in[] = "\nCythonized exact propagation in 1D. Parallelized inner loop.\n";
 static const char __pyx_k_numpy_core_multiarray_failed_to[] = "numpy.core.multiarray failed to import";
 static const char __pyx_k_unknown_dtype_code_in_numpy_pxd[] = "unknown dtype code in numpy.pxd (%d)";
 static const char __pyx_k_Buffer_view_does_not_expose_stri[] = "Buffer view does not expose strides";
@@ -2391,7 +2387,7 @@ static PyObject *__pyx_tuple__36;
 static PyObject *__pyx_codeobj__37;
 /* Late includes */
 
-/* "prop1d_cython.pyx":16
+/* "prop1d_cython.pyx":19
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef double complex add_clean(double complex *arr, int N):             # <<<<<<<<<<<<<<
@@ -2409,7 +2405,7 @@ static __pyx_t_double_complex __pyx_f_13prop1d_cython_add_clean(__pyx_t_double_c
   int __pyx_t_3;
   __Pyx_RefNannySetupContext("add_clean", 0);
 
-  /* "prop1d_cython.pyx":17
+  /* "prop1d_cython.pyx":20
  * @cython.wraparound(False)
  * cdef double complex add_clean(double complex *arr, int N):
  *     cdef double complex out = 0+0j             # <<<<<<<<<<<<<<
@@ -2418,7 +2414,7 @@ static __pyx_t_double_complex __pyx_f_13prop1d_cython_add_clean(__pyx_t_double_c
  */
   __pyx_v_out = __Pyx_c_sum_double(__pyx_t_double_complex_from_parts(0, 0), __pyx_t_double_complex_from_parts(0, 0.0));
 
-  /* "prop1d_cython.pyx":19
+  /* "prop1d_cython.pyx":22
  *     cdef double complex out = 0+0j
  *     cdef int k
  *     for k in range(N):             # <<<<<<<<<<<<<<
@@ -2430,7 +2426,7 @@ static __pyx_t_double_complex __pyx_f_13prop1d_cython_add_clean(__pyx_t_double_c
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_k = __pyx_t_3;
 
-    /* "prop1d_cython.pyx":20
+    /* "prop1d_cython.pyx":23
  *     cdef int k
  *     for k in range(N):
  *         out+=arr[k]             # <<<<<<<<<<<<<<
@@ -2439,7 +2435,7 @@ static __pyx_t_double_complex __pyx_f_13prop1d_cython_add_clean(__pyx_t_double_c
  */
     __pyx_v_out = __Pyx_c_sum_double(__pyx_v_out, (__pyx_v_arr[__pyx_v_k]));
 
-    /* "prop1d_cython.pyx":21
+    /* "prop1d_cython.pyx":24
  *     for k in range(N):
  *         out+=arr[k]
  *         arr[k] = 0             # <<<<<<<<<<<<<<
@@ -2449,7 +2445,7 @@ static __pyx_t_double_complex __pyx_f_13prop1d_cython_add_clean(__pyx_t_double_c
     (__pyx_v_arr[__pyx_v_k]) = __pyx_t_double_complex_from_parts(0, 0);
   }
 
-  /* "prop1d_cython.pyx":22
+  /* "prop1d_cython.pyx":25
  *         out+=arr[k]
  *         arr[k] = 0
  *     return out             # <<<<<<<<<<<<<<
@@ -2459,7 +2455,7 @@ static __pyx_t_double_complex __pyx_f_13prop1d_cython_add_clean(__pyx_t_double_c
   __pyx_r = __pyx_v_out;
   goto __pyx_L0;
 
-  /* "prop1d_cython.pyx":16
+  /* "prop1d_cython.pyx":19
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef double complex add_clean(double complex *arr, int N):             # <<<<<<<<<<<<<<
@@ -2473,10 +2469,10 @@ static __pyx_t_double_complex __pyx_f_13prop1d_cython_add_clean(__pyx_t_double_c
   return __pyx_r;
 }
 
-/* "prop1d_cython.pyx":28
+/* "prop1d_cython.pyx":31
  * @cython.wraparound(False)
  * @cython.cdivision(True)
- * cpdef exact_prop_cython(double[:] in_wave, double complex [:] out_wave,\             # <<<<<<<<<<<<<<
+ * cpdef exact_prop_cython(double complex [:] in_wave, double complex [:] out_wave,\             # <<<<<<<<<<<<<<
  *                double L_in, double L_out, double wavel, double z):
  * 
  */
@@ -2493,11 +2489,10 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
   __pyx_t_double_complex __pyx_v_fac;
   double __pyx_v_x;
   double __pyx_v_x1;
-  double __pyx_v_f;
+  __pyx_t_double_complex __pyx_v_f;
   int __pyx_v_i;
   int __pyx_v_j;
   double __pyx_v__temp1;
-  __pyx_t_double_complex __pyx_v__temp2;
   __pyx_t_double_complex *__pyx_v_sum_temp;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_in_domain;
   __Pyx_Buffer __pyx_pybuffer_in_domain;
@@ -2534,26 +2529,26 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
   __pyx_pybuffernd_out_domain.data = NULL;
   __pyx_pybuffernd_out_domain.rcbuffer = &__pyx_pybuffer_out_domain;
 
-  /* "prop1d_cython.pyx":31
+  /* "prop1d_cython.pyx":34
  *                double L_in, double L_out, double wavel, double z):
  * 
  *     cdef double pi = 3.14159265359             # <<<<<<<<<<<<<<
- *     cdef int N_in  = in_wave.shape[0]
- *     cdef int N_out = out_wave.shape[0]
+ * 
+ *     '''
  */
   __pyx_v_pi = 3.14159265359;
 
-  /* "prop1d_cython.pyx":32
- * 
- *     cdef double pi = 3.14159265359
+  /* "prop1d_cython.pyx":39
+ *     Build the input and output domains from the input
+ *     '''
  *     cdef int N_in  = in_wave.shape[0]             # <<<<<<<<<<<<<<
  *     cdef int N_out = out_wave.shape[0]
  *     cdef cnp.ndarray[cnp.float64_t, ndim=1] in_domain  = np.linspace(-L_in/2,L_in/2,N_in)
  */
   __pyx_v_N_in = (__pyx_v_in_wave.shape[0]);
 
-  /* "prop1d_cython.pyx":33
- *     cdef double pi = 3.14159265359
+  /* "prop1d_cython.pyx":40
+ *     '''
  *     cdef int N_in  = in_wave.shape[0]
  *     cdef int N_out = out_wave.shape[0]             # <<<<<<<<<<<<<<
  *     cdef cnp.ndarray[cnp.float64_t, ndim=1] in_domain  = np.linspace(-L_in/2,L_in/2,N_in)
@@ -2561,23 +2556,23 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
  */
   __pyx_v_N_out = (__pyx_v_out_wave.shape[0]);
 
-  /* "prop1d_cython.pyx":34
+  /* "prop1d_cython.pyx":41
  *     cdef int N_in  = in_wave.shape[0]
  *     cdef int N_out = out_wave.shape[0]
  *     cdef cnp.ndarray[cnp.float64_t, ndim=1] in_domain  = np.linspace(-L_in/2,L_in/2,N_in)             # <<<<<<<<<<<<<<
  *     cdef cnp.ndarray[cnp.float64_t, ndim=1] out_domain = np.linspace(-L_out/2,L_out/2,N_out)
- *     cdef double step_in = L_in/N_in
+ * 
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_linspace); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_linspace); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyFloat_FromDouble(((-__pyx_v_L_in) / 2.0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(((-__pyx_v_L_in) / 2.0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_L_in / 2.0)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_L_in / 2.0)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_N_in); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_N_in); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_6 = NULL;
   __pyx_t_7 = 0;
@@ -2594,7 +2589,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_6, __pyx_t_2, __pyx_t_4, __pyx_t_5};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -2605,7 +2600,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_6, __pyx_t_2, __pyx_t_4, __pyx_t_5};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -2614,7 +2609,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
   } else
   #endif
   {
-    __pyx_t_8 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 34, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 41, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     if (__pyx_t_6) {
       __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -2628,18 +2623,18 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
     __pyx_t_2 = 0;
     __pyx_t_4 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 34, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 41, __pyx_L1_error)
   __pyx_t_9 = ((PyArrayObject *)__pyx_t_1);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_in_domain.rcbuffer->pybuffer, (PyObject*)__pyx_t_9, &__Pyx_TypeInfo_nn___pyx_t_5numpy_float64_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_in_domain = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_in_domain.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 34, __pyx_L1_error)
+      __PYX_ERR(0, 41, __pyx_L1_error)
     } else {__pyx_pybuffernd_in_domain.diminfo[0].strides = __pyx_pybuffernd_in_domain.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_in_domain.diminfo[0].shape = __pyx_pybuffernd_in_domain.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -2647,23 +2642,23 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
   __pyx_v_in_domain = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "prop1d_cython.pyx":35
+  /* "prop1d_cython.pyx":42
  *     cdef int N_out = out_wave.shape[0]
  *     cdef cnp.ndarray[cnp.float64_t, ndim=1] in_domain  = np.linspace(-L_in/2,L_in/2,N_in)
  *     cdef cnp.ndarray[cnp.float64_t, ndim=1] out_domain = np.linspace(-L_out/2,L_out/2,N_out)             # <<<<<<<<<<<<<<
- *     cdef double step_in = L_in/N_in
  * 
+ *     '''
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_linspace); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_linspace); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyFloat_FromDouble(((-__pyx_v_L_out) / 2.0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(((-__pyx_v_L_out) / 2.0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = PyFloat_FromDouble((__pyx_v_L_out / 2.0)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble((__pyx_v_L_out / 2.0)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_N_out); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_N_out); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_2 = NULL;
   __pyx_t_7 = 0;
@@ -2680,7 +2675,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_8)) {
     PyObject *__pyx_temp[4] = {__pyx_t_2, __pyx_t_3, __pyx_t_5, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -2691,7 +2686,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_8)) {
     PyObject *__pyx_temp[4] = {__pyx_t_2, __pyx_t_3, __pyx_t_5, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -2700,7 +2695,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 42, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_2) {
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2); __pyx_t_2 = NULL;
@@ -2714,18 +2709,18 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
     __pyx_t_3 = 0;
     __pyx_t_5 = 0;
     __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 35, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 42, __pyx_L1_error)
   __pyx_t_10 = ((PyArrayObject *)__pyx_t_1);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_out_domain.rcbuffer->pybuffer, (PyObject*)__pyx_t_10, &__Pyx_TypeInfo_nn___pyx_t_5numpy_float64_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_out_domain = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_out_domain.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 35, __pyx_L1_error)
+      __PYX_ERR(0, 42, __pyx_L1_error)
     } else {__pyx_pybuffernd_out_domain.diminfo[0].strides = __pyx_pybuffernd_out_domain.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_out_domain.diminfo[0].shape = __pyx_pybuffernd_out_domain.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -2733,44 +2728,44 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
   __pyx_v_out_domain = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "prop1d_cython.pyx":36
- *     cdef cnp.ndarray[cnp.float64_t, ndim=1] in_domain  = np.linspace(-L_in/2,L_in/2,N_in)
- *     cdef cnp.ndarray[cnp.float64_t, ndim=1] out_domain = np.linspace(-L_out/2,L_out/2,N_out)
+  /* "prop1d_cython.pyx":47
+ *     Calculate step size of input
+ *     '''
  *     cdef double step_in = L_in/N_in             # <<<<<<<<<<<<<<
  * 
  *     cdef double complex fac1 = 0.7071067811865476-0.7071067811865476j #np.sqrt(1/1j)
  */
   __pyx_v_step_in = (__pyx_v_L_in / __pyx_v_N_in);
 
-  /* "prop1d_cython.pyx":38
+  /* "prop1d_cython.pyx":49
  *     cdef double step_in = L_in/N_in
  * 
  *     cdef double complex fac1 = 0.7071067811865476-0.7071067811865476j #np.sqrt(1/1j)             # <<<<<<<<<<<<<<
  *     cdef double complex fac  = (step_in/sqrt(wavel*z))*fac1
- *     cdef double x,x1,f
+ * 
  */
   __pyx_v_fac1 = __Pyx_c_diff_double(__pyx_t_double_complex_from_parts(0.7071067811865476, 0), __pyx_t_double_complex_from_parts(0, 0.7071067811865476));
 
-  /* "prop1d_cython.pyx":39
+  /* "prop1d_cython.pyx":50
  * 
  *     cdef double complex fac1 = 0.7071067811865476-0.7071067811865476j #np.sqrt(1/1j)
  *     cdef double complex fac  = (step_in/sqrt(wavel*z))*fac1             # <<<<<<<<<<<<<<
- *     cdef double x,x1,f
- *     cdef int i,j
+ * 
+ *     '''
  */
   __pyx_v_fac = __Pyx_c_prod_double(__pyx_t_double_complex_from_parts((__pyx_v_step_in / sqrt((__pyx_v_wavel * __pyx_v_z))), 0), __pyx_v_fac1);
 
-  /* "prop1d_cython.pyx":45
- *     cdef double complex _temp2
- * 
+  /* "prop1d_cython.pyx":64
+ *     This is to ensure that there are no race conditions when parallelizing.
+ *     '''
  *     cdef double complex *sum_temp = <double complex*> malloc(N_in * sizeof(double complex))             # <<<<<<<<<<<<<<
  *     add_clean(sum_temp,N_in)
  * 
  */
   __pyx_v_sum_temp = ((__pyx_t_double_complex *)malloc((__pyx_v_N_in * (sizeof(__pyx_t_double_complex)))));
 
-  /* "prop1d_cython.pyx":46
- * 
+  /* "prop1d_cython.pyx":65
+ *     '''
  *     cdef double complex *sum_temp = <double complex*> malloc(N_in * sizeof(double complex))
  *     add_clean(sum_temp,N_in)             # <<<<<<<<<<<<<<
  * 
@@ -2778,7 +2773,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
  */
   (void)(__pyx_f_13prop1d_cython_add_clean(__pyx_v_sum_temp, __pyx_v_N_in));
 
-  /* "prop1d_cython.pyx":48
+  /* "prop1d_cython.pyx":67
  *     add_clean(sum_temp,N_in)
  * 
  *     for i in range(N_out):             # <<<<<<<<<<<<<<
@@ -2790,7 +2785,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
   for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_11; __pyx_t_12+=1) {
     __pyx_v_i = __pyx_t_12;
 
-    /* "prop1d_cython.pyx":49
+    /* "prop1d_cython.pyx":68
  * 
  *     for i in range(N_out):
  *         x1 = out_domain[i]             # <<<<<<<<<<<<<<
@@ -2800,7 +2795,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
     __pyx_t_13 = __pyx_v_i;
     __pyx_v_x1 = (*__Pyx_BufPtrStrided1d(__pyx_t_5numpy_float64_t *, __pyx_pybuffernd_out_domain.rcbuffer->pybuffer.buf, __pyx_t_13, __pyx_pybuffernd_out_domain.diminfo[0].strides));
 
-    /* "prop1d_cython.pyx":50
+    /* "prop1d_cython.pyx":69
  *     for i in range(N_out):
  *         x1 = out_domain[i]
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -2815,7 +2810,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
         #endif
         /*try:*/ {
 
-          /* "prop1d_cython.pyx":51
+          /* "prop1d_cython.pyx":70
  *         x1 = out_domain[i]
  *         with nogil:
  *             for j in prange(N_in, num_threads = 10):             # <<<<<<<<<<<<<<
@@ -2839,17 +2834,16 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
                   #endif /* _OPENMP */
                   {
                       #ifdef _OPENMP
-                      #pragma omp for lastprivate(__pyx_v__temp1) lastprivate(__pyx_v__temp2) lastprivate(__pyx_v_f) firstprivate(__pyx_v_j) lastprivate(__pyx_v_j) lastprivate(__pyx_v_x)
+                      #pragma omp for lastprivate(__pyx_v__temp1) lastprivate(__pyx_v_f) firstprivate(__pyx_v_j) lastprivate(__pyx_v_j) lastprivate(__pyx_v_x)
                       #endif /* _OPENMP */
                       for (__pyx_t_15 = 0; __pyx_t_15 < __pyx_t_16; __pyx_t_15++){
                           {
                               __pyx_v_j = (int)(0 + 1 * __pyx_t_15);
                               /* Initialize private variables to invalid values */
                               __pyx_v__temp1 = ((double)__PYX_NAN());
-                              __pyx_v_f = ((double)__PYX_NAN());
                               __pyx_v_x = ((double)__PYX_NAN());
 
-                              /* "prop1d_cython.pyx":52
+                              /* "prop1d_cython.pyx":71
  *         with nogil:
  *             for j in prange(N_in, num_threads = 10):
  *                 f =   in_wave[j]             # <<<<<<<<<<<<<<
@@ -2857,44 +2851,35 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
  *                 _temp1 = (((-1*pi)/(wavel*z))*(x-x1)**2)
  */
                               __pyx_t_17 = __pyx_v_j;
-                              __pyx_v_f = (*((double *) ( /* dim=0 */ (__pyx_v_in_wave.data + __pyx_t_17 * __pyx_v_in_wave.strides[0]) )));
+                              __pyx_v_f = (*((__pyx_t_double_complex *) ( /* dim=0 */ (__pyx_v_in_wave.data + __pyx_t_17 * __pyx_v_in_wave.strides[0]) )));
 
-                              /* "prop1d_cython.pyx":53
+                              /* "prop1d_cython.pyx":72
  *             for j in prange(N_in, num_threads = 10):
  *                 f =   in_wave[j]
  *                 x = in_domain[j]             # <<<<<<<<<<<<<<
  *                 _temp1 = (((-1*pi)/(wavel*z))*(x-x1)**2)
- *                 _temp2 = cos(_temp1)+1j*sin(_temp1)
+ *                 sum_temp[j] = (cos(_temp1)+1j*sin(_temp1))*f*fac
  */
                               __pyx_t_18 = __pyx_v_j;
                               __pyx_v_x = (*__Pyx_BufPtrStrided1d(__pyx_t_5numpy_float64_t *, __pyx_pybuffernd_in_domain.rcbuffer->pybuffer.buf, __pyx_t_18, __pyx_pybuffernd_in_domain.diminfo[0].strides));
 
-                              /* "prop1d_cython.pyx":54
+                              /* "prop1d_cython.pyx":73
  *                 f =   in_wave[j]
  *                 x = in_domain[j]
  *                 _temp1 = (((-1*pi)/(wavel*z))*(x-x1)**2)             # <<<<<<<<<<<<<<
- *                 _temp2 = cos(_temp1)+1j*sin(_temp1)
- *                 sum_temp[j] = _temp2*f*fac
+ *                 sum_temp[j] = (cos(_temp1)+1j*sin(_temp1))*f*fac
+ *         out_wave[i] = add_clean(sum_temp,N_in)
  */
                               __pyx_v__temp1 = (((-1.0 * __pyx_v_pi) / (__pyx_v_wavel * __pyx_v_z)) * pow((__pyx_v_x - __pyx_v_x1), 2.0));
 
-                              /* "prop1d_cython.pyx":55
+                              /* "prop1d_cython.pyx":74
  *                 x = in_domain[j]
  *                 _temp1 = (((-1*pi)/(wavel*z))*(x-x1)**2)
- *                 _temp2 = cos(_temp1)+1j*sin(_temp1)             # <<<<<<<<<<<<<<
- *                 sum_temp[j] = _temp2*f*fac
- *         out_wave[i] = add_clean(sum_temp,N_in)
- */
-                              __pyx_v__temp2 = __Pyx_c_sum_double(__pyx_t_double_complex_from_parts(cos(__pyx_v__temp1), 0), __Pyx_c_prod_double(__pyx_t_double_complex_from_parts(0, 1.0), __pyx_t_double_complex_from_parts(sin(__pyx_v__temp1), 0)));
-
-                              /* "prop1d_cython.pyx":56
- *                 _temp1 = (((-1*pi)/(wavel*z))*(x-x1)**2)
- *                 _temp2 = cos(_temp1)+1j*sin(_temp1)
- *                 sum_temp[j] = _temp2*f*fac             # <<<<<<<<<<<<<<
+ *                 sum_temp[j] = (cos(_temp1)+1j*sin(_temp1))*f*fac             # <<<<<<<<<<<<<<
  *         out_wave[i] = add_clean(sum_temp,N_in)
  *     return
  */
-                              (__pyx_v_sum_temp[__pyx_v_j]) = __Pyx_c_prod_double(__Pyx_c_prod_double(__pyx_v__temp2, __pyx_t_double_complex_from_parts(__pyx_v_f, 0)), __pyx_v_fac);
+                              (__pyx_v_sum_temp[__pyx_v_j]) = __Pyx_c_prod_double(__Pyx_c_prod_double(__Pyx_c_sum_double(__pyx_t_double_complex_from_parts(cos(__pyx_v__temp1), 0), __Pyx_c_prod_double(__pyx_t_double_complex_from_parts(0, 1.0), __pyx_t_double_complex_from_parts(sin(__pyx_v__temp1), 0))), __pyx_v_f), __pyx_v_fac);
                           }
                       }
                   }
@@ -2908,7 +2893,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
           #endif
         }
 
-        /* "prop1d_cython.pyx":50
+        /* "prop1d_cython.pyx":69
  *     for i in range(N_out):
  *         x1 = out_domain[i]
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -2927,9 +2912,9 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
         }
     }
 
-    /* "prop1d_cython.pyx":57
- *                 _temp2 = cos(_temp1)+1j*sin(_temp1)
- *                 sum_temp[j] = _temp2*f*fac
+    /* "prop1d_cython.pyx":75
+ *                 _temp1 = (((-1*pi)/(wavel*z))*(x-x1)**2)
+ *                 sum_temp[j] = (cos(_temp1)+1j*sin(_temp1))*f*fac
  *         out_wave[i] = add_clean(sum_temp,N_in)             # <<<<<<<<<<<<<<
  *     return
  */
@@ -2937,8 +2922,8 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
     *((__pyx_t_double_complex *) ( /* dim=0 */ (__pyx_v_out_wave.data + __pyx_t_19 * __pyx_v_out_wave.strides[0]) )) = __pyx_f_13prop1d_cython_add_clean(__pyx_v_sum_temp, __pyx_v_N_in);
   }
 
-  /* "prop1d_cython.pyx":58
- *                 sum_temp[j] = _temp2*f*fac
+  /* "prop1d_cython.pyx":76
+ *                 sum_temp[j] = (cos(_temp1)+1j*sin(_temp1))*f*fac
  *         out_wave[i] = add_clean(sum_temp,N_in)
  *     return             # <<<<<<<<<<<<<<
  */
@@ -2946,10 +2931,10 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
 
-  /* "prop1d_cython.pyx":28
+  /* "prop1d_cython.pyx":31
  * @cython.wraparound(False)
  * @cython.cdivision(True)
- * cpdef exact_prop_cython(double[:] in_wave, double complex [:] out_wave,\             # <<<<<<<<<<<<<<
+ * cpdef exact_prop_cython(double complex [:] in_wave, double complex [:] out_wave,\             # <<<<<<<<<<<<<<
  *                double L_in, double L_out, double wavel, double z):
  * 
  */
@@ -3027,35 +3012,35 @@ static PyObject *__pyx_pw_13prop1d_cython_1exact_prop_cython(PyObject *__pyx_sel
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_out_wave)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("exact_prop_cython", 1, 6, 6, 1); __PYX_ERR(0, 28, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("exact_prop_cython", 1, 6, 6, 1); __PYX_ERR(0, 31, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_L_in)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("exact_prop_cython", 1, 6, 6, 2); __PYX_ERR(0, 28, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("exact_prop_cython", 1, 6, 6, 2); __PYX_ERR(0, 31, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_L_out)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("exact_prop_cython", 1, 6, 6, 3); __PYX_ERR(0, 28, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("exact_prop_cython", 1, 6, 6, 3); __PYX_ERR(0, 31, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_wavel)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("exact_prop_cython", 1, 6, 6, 4); __PYX_ERR(0, 28, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("exact_prop_cython", 1, 6, 6, 4); __PYX_ERR(0, 31, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
         if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_z)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("exact_prop_cython", 1, 6, 6, 5); __PYX_ERR(0, 28, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("exact_prop_cython", 1, 6, 6, 5); __PYX_ERR(0, 31, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "exact_prop_cython") < 0)) __PYX_ERR(0, 28, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "exact_prop_cython") < 0)) __PYX_ERR(0, 31, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
@@ -3067,16 +3052,16 @@ static PyObject *__pyx_pw_13prop1d_cython_1exact_prop_cython(PyObject *__pyx_sel
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
       values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
     }
-    __pyx_v_in_wave = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_in_wave.memview)) __PYX_ERR(0, 28, __pyx_L3_error)
-    __pyx_v_out_wave = __Pyx_PyObject_to_MemoryviewSlice_ds___pyx_t_double_complex(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_out_wave.memview)) __PYX_ERR(0, 28, __pyx_L3_error)
-    __pyx_v_L_in = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_L_in == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 29, __pyx_L3_error)
-    __pyx_v_L_out = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_L_out == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 29, __pyx_L3_error)
-    __pyx_v_wavel = __pyx_PyFloat_AsDouble(values[4]); if (unlikely((__pyx_v_wavel == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 29, __pyx_L3_error)
-    __pyx_v_z = __pyx_PyFloat_AsDouble(values[5]); if (unlikely((__pyx_v_z == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 29, __pyx_L3_error)
+    __pyx_v_in_wave = __Pyx_PyObject_to_MemoryviewSlice_ds___pyx_t_double_complex(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_in_wave.memview)) __PYX_ERR(0, 31, __pyx_L3_error)
+    __pyx_v_out_wave = __Pyx_PyObject_to_MemoryviewSlice_ds___pyx_t_double_complex(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_out_wave.memview)) __PYX_ERR(0, 31, __pyx_L3_error)
+    __pyx_v_L_in = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_L_in == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 32, __pyx_L3_error)
+    __pyx_v_L_out = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_L_out == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 32, __pyx_L3_error)
+    __pyx_v_wavel = __pyx_PyFloat_AsDouble(values[4]); if (unlikely((__pyx_v_wavel == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 32, __pyx_L3_error)
+    __pyx_v_z = __pyx_PyFloat_AsDouble(values[5]); if (unlikely((__pyx_v_z == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 32, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("exact_prop_cython", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 28, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("exact_prop_cython", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 31, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("prop1d_cython.exact_prop_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3095,9 +3080,9 @@ static PyObject *__pyx_pf_13prop1d_cython_exact_prop_cython(CYTHON_UNUSED PyObje
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("exact_prop_cython", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_in_wave.memview)) { __Pyx_RaiseUnboundLocalError("in_wave"); __PYX_ERR(0, 28, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_out_wave.memview)) { __Pyx_RaiseUnboundLocalError("out_wave"); __PYX_ERR(0, 28, __pyx_L1_error) }
-  __pyx_t_1 = __pyx_f_13prop1d_cython_exact_prop_cython(__pyx_v_in_wave, __pyx_v_out_wave, __pyx_v_L_in, __pyx_v_L_out, __pyx_v_wavel, __pyx_v_z, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
+  if (unlikely(!__pyx_v_in_wave.memview)) { __Pyx_RaiseUnboundLocalError("in_wave"); __PYX_ERR(0, 31, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_out_wave.memview)) { __Pyx_RaiseUnboundLocalError("out_wave"); __PYX_ERR(0, 31, __pyx_L1_error) }
+  __pyx_t_1 = __pyx_f_13prop1d_cython_exact_prop_cython(__pyx_v_in_wave, __pyx_v_out_wave, __pyx_v_L_in, __pyx_v_L_out, __pyx_v_wavel, __pyx_v_z, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -19311,7 +19296,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 22, __pyx_L1_error)
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(1, 229, __pyx_L1_error)
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(1, 810, __pyx_L1_error)
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(1, 1000, __pyx_L1_error)
@@ -20046,7 +20031,7 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "prop1d_cython.pyx":5
- * Cythonized exact propagation in 1D.
+ * Cythonized exact propagation in 1D. Parallelized inner loop.
  * '''
  * import numpy as np             # <<<<<<<<<<<<<<
  * cimport numpy as cnp
@@ -20060,7 +20045,7 @@ if (!__Pyx_RefNanny) {
   /* "prop1d_cython.pyx":1
  * ##%%cython --compile-args=-fopenmp --compile-args=-O3 --link-args=-fopenmp --force             # <<<<<<<<<<<<<<
  * '''
- * Cythonized exact propagation in 1D.
+ * Cythonized exact propagation in 1D. Parallelized inner loop.
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -23296,29 +23281,6 @@ fail:
 no_fail:
     __Pyx_RefNannyFinishContext();
     return retval;
-}
-
-/* ObjectToMemviewSlice */
-        static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_ds_double(PyObject *obj, int writable_flag) {
-    __Pyx_memviewslice result = { 0, 0, { 0 }, { 0 }, { 0 } };
-    __Pyx_BufFmt_StackElem stack[1];
-    int axes_specs[] = { (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_STRIDED) };
-    int retcode;
-    if (obj == Py_None) {
-        result.memview = (struct __pyx_memoryview_obj *) Py_None;
-        return result;
-    }
-    retcode = __Pyx_ValidateAndInit_memviewslice(axes_specs, 0,
-                                                 PyBUF_RECORDS_RO | writable_flag, 1,
-                                                 &__Pyx_TypeInfo_double, stack,
-                                                 &result, obj);
-    if (unlikely(retcode == -1))
-        goto __pyx_fail;
-    return result;
-__pyx_fail:
-    result.memview = NULL;
-    result.data = NULL;
-    return result;
 }
 
 /* ObjectToMemviewSlice */

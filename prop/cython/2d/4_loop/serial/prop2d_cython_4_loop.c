@@ -1873,9 +1873,6 @@ static int __Pyx_ValidateAndInit_memviewslice(
                 PyObject *original_obj);
 
 /* ObjectToMemviewSlice.proto */
-static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dsds_double(PyObject *, int writable_flag);
-
-/* ObjectToMemviewSlice.proto */
 static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dsds___pyx_t_double_complex(PyObject *, int writable_flag);
 
 /* CIntToPy.proto */
@@ -2061,8 +2058,8 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *, Py_ssize_t *, Py_
 static void __pyx_memoryview_slice_assign_scalar(__Pyx_memviewslice *, int, size_t, void *, int); /*proto*/
 static void __pyx_memoryview__slice_assign_scalar(char *, Py_ssize_t *, Py_ssize_t *, int, size_t, void *); /*proto*/
 static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *, PyObject *); /*proto*/
-static __Pyx_TypeInfo __Pyx_TypeInfo_double = { "double", NULL, sizeof(double), { 0 }, 0, 'R', 0, 0 };
 static __Pyx_TypeInfo __Pyx_TypeInfo___pyx_t_double_complex = { "double complex", NULL, sizeof(__pyx_t_double_complex), { 0 }, 0, 'C', 0, 0 };
+static __Pyx_TypeInfo __Pyx_TypeInfo_double = { "double", NULL, sizeof(double), { 0 }, 0, 'R', 0, 0 };
 #define __Pyx_MODULE_NAME "prop2d_cython_4_loop"
 extern int __pyx_module_is_main_prop2d_cython_4_loop;
 int __pyx_module_is_main_prop2d_cython_4_loop = 0;
@@ -2530,7 +2527,7 @@ static __pyx_t_double_complex __pyx_f_20prop2d_cython_4_loop_add_clean(__pyx_t_d
 /* "prop2d_cython_4_loop.pyx":40
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * def exact_prop_2D_cython(double[:,:] in_wave, double complex [:,:] out_wave,\             # <<<<<<<<<<<<<<
+ * def exact_prop_2D_cython(double complex [:,:] in_wave, double complex [:,:] out_wave,\             # <<<<<<<<<<<<<<
  *                         double L_in, double L_out, double x_out_off, double y_out_off,\
  *                          double wavel, double z):
  */
@@ -2639,7 +2636,7 @@ static PyObject *__pyx_pw_20prop2d_cython_4_loop_1exact_prop_2D_cython(PyObject 
       values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
       values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
     }
-    __pyx_v_in_wave = __Pyx_PyObject_to_MemoryviewSlice_dsds_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_in_wave.memview)) __PYX_ERR(0, 40, __pyx_L3_error)
+    __pyx_v_in_wave = __Pyx_PyObject_to_MemoryviewSlice_dsds___pyx_t_double_complex(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_in_wave.memview)) __PYX_ERR(0, 40, __pyx_L3_error)
     __pyx_v_out_wave = __Pyx_PyObject_to_MemoryviewSlice_dsds___pyx_t_double_complex(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_out_wave.memview)) __PYX_ERR(0, 40, __pyx_L3_error)
     __pyx_v_L_in = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_L_in == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 41, __pyx_L3_error)
     __pyx_v_L_out = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_L_out == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 41, __pyx_L3_error)
@@ -2675,12 +2672,12 @@ static PyObject *__pyx_pf_20prop2d_cython_4_loop_exact_prop_2D_cython(CYTHON_UNU
   __Pyx_memviewslice __pyx_v_out_x = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_out_y = { 0, 0, { 0 }, { 0 }, { 0 } };
   double __pyx_v_step_in_x;
-  CYTHON_UNUSED double __pyx_v_step_in_y;
+  double __pyx_v_step_in_y;
   double __pyx_v_x;
   double __pyx_v_x1;
   double __pyx_v_y;
   double __pyx_v_y1;
-  double __pyx_v_f;
+  __pyx_t_double_complex __pyx_v_f;
   int __pyx_v_i;
   int __pyx_v_j;
   int __pyx_v_k;
@@ -2703,7 +2700,7 @@ static PyObject *__pyx_pf_20prop2d_cython_4_loop_exact_prop_2D_cython(CYTHON_UNU
   PyObject *__pyx_t_8 = NULL;
   __Pyx_memviewslice __pyx_t_9 = { 0, 0, { 0 }, { 0 }, { 0 } };
   double __pyx_t_10;
-  int __pyx_t_11;
+  double __pyx_t_11;
   int __pyx_t_12;
   int __pyx_t_13;
   int __pyx_t_14;
@@ -2714,13 +2711,13 @@ static PyObject *__pyx_pf_20prop2d_cython_4_loop_exact_prop_2D_cython(CYTHON_UNU
   int __pyx_t_19;
   int __pyx_t_20;
   int __pyx_t_21;
-  Py_ssize_t __pyx_t_22;
+  int __pyx_t_22;
   Py_ssize_t __pyx_t_23;
   Py_ssize_t __pyx_t_24;
   Py_ssize_t __pyx_t_25;
   Py_ssize_t __pyx_t_26;
   Py_ssize_t __pyx_t_27;
-  double __pyx_t_28;
+  Py_ssize_t __pyx_t_28;
   Py_ssize_t __pyx_t_29;
   Py_ssize_t __pyx_t_30;
   __Pyx_RefNannySetupContext("exact_prop_2D_cython", 0);
@@ -3117,30 +3114,35 @@ static PyObject *__pyx_pf_20prop2d_cython_4_loop_exact_prop_2D_cython(CYTHON_UNU
   }
   __pyx_v_step_in_y = (__pyx_v_L_in / __pyx_v_N_in_y);
 
-  /* "prop2d_cython_4_loop.pyx":71
+  /* "prop2d_cython_4_loop.pyx":72
  *     cdef int i,j,k,p,q
  * 
  *     cdef double complex fac1 = 0.7071067811865476-0.7071067811865476j #np.sqrt(1/1j)             # <<<<<<<<<<<<<<
- *     cdef double complex fac  = (step_in_x/sqrt(wavel*z))*fac1
+ *     cdef double complex fac  = (step_in_x/sqrt(wavel*z))*(step_in_y/sqrt(wavel*z))*fac1
  *     cdef double _temp1
  */
   __pyx_v_fac1 = __Pyx_c_diff_double(__pyx_t_double_complex_from_parts(0.7071067811865476, 0), __pyx_t_double_complex_from_parts(0, 0.7071067811865476));
 
-  /* "prop2d_cython_4_loop.pyx":72
+  /* "prop2d_cython_4_loop.pyx":73
  * 
  *     cdef double complex fac1 = 0.7071067811865476-0.7071067811865476j #np.sqrt(1/1j)
- *     cdef double complex fac  = (step_in_x/sqrt(wavel*z))*fac1             # <<<<<<<<<<<<<<
+ *     cdef double complex fac  = (step_in_x/sqrt(wavel*z))*(step_in_y/sqrt(wavel*z))*fac1             # <<<<<<<<<<<<<<
  *     cdef double _temp1
  *     cdef double complex _temp2
  */
   __pyx_t_10 = sqrt((__pyx_v_wavel * __pyx_v_z));
   if (unlikely(__pyx_t_10 == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 72, __pyx_L1_error)
+    __PYX_ERR(0, 73, __pyx_L1_error)
   }
-  __pyx_v_fac = __Pyx_c_prod_double(__pyx_t_double_complex_from_parts((__pyx_v_step_in_x / __pyx_t_10), 0), __pyx_v_fac1);
+  __pyx_t_11 = sqrt((__pyx_v_wavel * __pyx_v_z));
+  if (unlikely(__pyx_t_11 == 0)) {
+    PyErr_SetString(PyExc_ZeroDivisionError, "float division");
+    __PYX_ERR(0, 73, __pyx_L1_error)
+  }
+  __pyx_v_fac = __Pyx_c_prod_double(__pyx_t_double_complex_from_parts(((__pyx_v_step_in_x / __pyx_t_10) * (__pyx_v_step_in_y / __pyx_t_11)), 0), __pyx_v_fac1);
 
-  /* "prop2d_cython_4_loop.pyx":80
+  /* "prop2d_cython_4_loop.pyx":81
  *     This is to ensure that there are no race conditions when parallelizing.
  *     '''
  *     cdef double complex *sum_temp = <double complex*> malloc(N_in_t * sizeof(double complex))             # <<<<<<<<<<<<<<
@@ -3149,7 +3151,7 @@ static PyObject *__pyx_pf_20prop2d_cython_4_loop_exact_prop_2D_cython(CYTHON_UNU
  */
   __pyx_v_sum_temp = ((__pyx_t_double_complex *)malloc((__pyx_v_N_in_t * (sizeof(__pyx_t_double_complex)))));
 
-  /* "prop2d_cython_4_loop.pyx":81
+  /* "prop2d_cython_4_loop.pyx":82
  *     '''
  *     cdef double complex *sum_temp = <double complex*> malloc(N_in_t * sizeof(double complex))
  *     add_clean(sum_temp,N_in_t)             # <<<<<<<<<<<<<<
@@ -3158,7 +3160,7 @@ static PyObject *__pyx_pf_20prop2d_cython_4_loop_exact_prop_2D_cython(CYTHON_UNU
  */
   (void)(__pyx_f_20prop2d_cython_4_loop_add_clean(__pyx_v_sum_temp, __pyx_v_N_in_t));
 
-  /* "prop2d_cython_4_loop.pyx":85
+  /* "prop2d_cython_4_loop.pyx":86
  * 
  * 
  *     for i in range(N_out_x):             # <<<<<<<<<<<<<<
@@ -3166,23 +3168,23 @@ static PyObject *__pyx_pf_20prop2d_cython_4_loop_exact_prop_2D_cython(CYTHON_UNU
  *             with nogil:
  */
   __pyx_t_7 = __pyx_v_N_out_x;
-  __pyx_t_11 = __pyx_t_7;
-  for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_11; __pyx_t_12+=1) {
-    __pyx_v_i = __pyx_t_12;
+  __pyx_t_12 = __pyx_t_7;
+  for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
+    __pyx_v_i = __pyx_t_13;
 
-    /* "prop2d_cython_4_loop.pyx":86
+    /* "prop2d_cython_4_loop.pyx":87
  * 
  *     for i in range(N_out_x):
  *         for j in range(N_out_y):             # <<<<<<<<<<<<<<
  *             with nogil:
  *                 for p in range(N_in_x):
  */
-    __pyx_t_13 = __pyx_v_N_out_y;
-    __pyx_t_14 = __pyx_t_13;
-    for (__pyx_t_15 = 0; __pyx_t_15 < __pyx_t_14; __pyx_t_15+=1) {
-      __pyx_v_j = __pyx_t_15;
+    __pyx_t_14 = __pyx_v_N_out_y;
+    __pyx_t_15 = __pyx_t_14;
+    for (__pyx_t_16 = 0; __pyx_t_16 < __pyx_t_15; __pyx_t_16+=1) {
+      __pyx_v_j = __pyx_t_16;
 
-      /* "prop2d_cython_4_loop.pyx":87
+      /* "prop2d_cython_4_loop.pyx":88
  *     for i in range(N_out_x):
  *         for j in range(N_out_y):
  *             with nogil:             # <<<<<<<<<<<<<<
@@ -3197,82 +3199,82 @@ static PyObject *__pyx_pf_20prop2d_cython_4_loop_exact_prop_2D_cython(CYTHON_UNU
           #endif
           /*try:*/ {
 
-            /* "prop2d_cython_4_loop.pyx":88
+            /* "prop2d_cython_4_loop.pyx":89
  *         for j in range(N_out_y):
  *             with nogil:
  *                 for p in range(N_in_x):             # <<<<<<<<<<<<<<
  *                     for q in range(N_in_y):
  *                         x  =  in_x[p]
  */
-            __pyx_t_16 = __pyx_v_N_in_x;
-            __pyx_t_17 = __pyx_t_16;
-            for (__pyx_t_18 = 0; __pyx_t_18 < __pyx_t_17; __pyx_t_18+=1) {
-              __pyx_v_p = __pyx_t_18;
+            __pyx_t_17 = __pyx_v_N_in_x;
+            __pyx_t_18 = __pyx_t_17;
+            for (__pyx_t_19 = 0; __pyx_t_19 < __pyx_t_18; __pyx_t_19+=1) {
+              __pyx_v_p = __pyx_t_19;
 
-              /* "prop2d_cython_4_loop.pyx":89
+              /* "prop2d_cython_4_loop.pyx":90
  *             with nogil:
  *                 for p in range(N_in_x):
  *                     for q in range(N_in_y):             # <<<<<<<<<<<<<<
  *                         x  =  in_x[p]
  *                         y  =  in_y[q]
  */
-              __pyx_t_19 = __pyx_v_N_in_y;
-              __pyx_t_20 = __pyx_t_19;
-              for (__pyx_t_21 = 0; __pyx_t_21 < __pyx_t_20; __pyx_t_21+=1) {
-                __pyx_v_q = __pyx_t_21;
+              __pyx_t_20 = __pyx_v_N_in_y;
+              __pyx_t_21 = __pyx_t_20;
+              for (__pyx_t_22 = 0; __pyx_t_22 < __pyx_t_21; __pyx_t_22+=1) {
+                __pyx_v_q = __pyx_t_22;
 
-                /* "prop2d_cython_4_loop.pyx":90
+                /* "prop2d_cython_4_loop.pyx":91
  *                 for p in range(N_in_x):
  *                     for q in range(N_in_y):
  *                         x  =  in_x[p]             # <<<<<<<<<<<<<<
  *                         y  =  in_y[q]
  *                         x1 = out_x[i]
  */
-                __pyx_t_22 = __pyx_v_p;
-                __pyx_v_x = (*((double *) ( /* dim=0 */ (__pyx_v_in_x.data + __pyx_t_22 * __pyx_v_in_x.strides[0]) )));
+                __pyx_t_23 = __pyx_v_p;
+                __pyx_v_x = (*((double *) ( /* dim=0 */ (__pyx_v_in_x.data + __pyx_t_23 * __pyx_v_in_x.strides[0]) )));
 
-                /* "prop2d_cython_4_loop.pyx":91
+                /* "prop2d_cython_4_loop.pyx":92
  *                     for q in range(N_in_y):
  *                         x  =  in_x[p]
  *                         y  =  in_y[q]             # <<<<<<<<<<<<<<
  *                         x1 = out_x[i]
  *                         y1 = out_y[j]
  */
-                __pyx_t_23 = __pyx_v_q;
-                __pyx_v_y = (*((double *) ( /* dim=0 */ (__pyx_v_in_y.data + __pyx_t_23 * __pyx_v_in_y.strides[0]) )));
+                __pyx_t_24 = __pyx_v_q;
+                __pyx_v_y = (*((double *) ( /* dim=0 */ (__pyx_v_in_y.data + __pyx_t_24 * __pyx_v_in_y.strides[0]) )));
 
-                /* "prop2d_cython_4_loop.pyx":92
+                /* "prop2d_cython_4_loop.pyx":93
  *                         x  =  in_x[p]
  *                         y  =  in_y[q]
  *                         x1 = out_x[i]             # <<<<<<<<<<<<<<
  *                         y1 = out_y[j]
  *                         f  = in_wave[p][q]
  */
-                __pyx_t_24 = __pyx_v_i;
-                __pyx_v_x1 = (*((double *) ( /* dim=0 */ (__pyx_v_out_x.data + __pyx_t_24 * __pyx_v_out_x.strides[0]) )));
+                __pyx_t_25 = __pyx_v_i;
+                __pyx_v_x1 = (*((double *) ( /* dim=0 */ (__pyx_v_out_x.data + __pyx_t_25 * __pyx_v_out_x.strides[0]) )));
 
-                /* "prop2d_cython_4_loop.pyx":93
+                /* "prop2d_cython_4_loop.pyx":94
  *                         y  =  in_y[q]
  *                         x1 = out_x[i]
  *                         y1 = out_y[j]             # <<<<<<<<<<<<<<
  *                         f  = in_wave[p][q]
  *                         k  = p*N_in_x + q
  */
-                __pyx_t_25 = __pyx_v_j;
-                __pyx_v_y1 = (*((double *) ( /* dim=0 */ (__pyx_v_out_y.data + __pyx_t_25 * __pyx_v_out_y.strides[0]) )));
+                __pyx_t_26 = __pyx_v_j;
+                __pyx_v_y1 = (*((double *) ( /* dim=0 */ (__pyx_v_out_y.data + __pyx_t_26 * __pyx_v_out_y.strides[0]) )));
 
-                /* "prop2d_cython_4_loop.pyx":94
+                /* "prop2d_cython_4_loop.pyx":95
  *                         x1 = out_x[i]
  *                         y1 = out_y[j]
  *                         f  = in_wave[p][q]             # <<<<<<<<<<<<<<
  *                         k  = p*N_in_x + q
  *                         _temp1 = (((-1*pi)/(wavel*z))*((x-x1)**2+(y-y1)**2))
  */
-                __pyx_t_26 = __pyx_v_p;
-                __pyx_t_27 = __pyx_v_q;
-                __pyx_v_f = (*((double *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_in_wave.data + __pyx_t_26 * __pyx_v_in_wave.strides[0]) ) + __pyx_t_27 * __pyx_v_in_wave.strides[1]) )));
+                __pyx_t_27 = __pyx_v_p;
+                __pyx_t_28 = __pyx_v_q;
+                __pyx_v_f = (*((__pyx_t_double_complex *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_in_wave.data + __pyx_t_27 * __pyx_v_in_wave.strides[0]) ) + __pyx_t_28 * __pyx_v_in_wave.strides[1]) )));
 
-                /* "prop2d_cython_4_loop.pyx":95
+                /* "prop2d_cython_4_loop.pyx":96
  *                         y1 = out_y[j]
  *                         f  = in_wave[p][q]
  *                         k  = p*N_in_x + q             # <<<<<<<<<<<<<<
@@ -3281,16 +3283,16 @@ static PyObject *__pyx_pf_20prop2d_cython_4_loop_exact_prop_2D_cython(CYTHON_UNU
  */
                 __pyx_v_k = ((__pyx_v_p * __pyx_v_N_in_x) + __pyx_v_q);
 
-                /* "prop2d_cython_4_loop.pyx":96
+                /* "prop2d_cython_4_loop.pyx":97
  *                         f  = in_wave[p][q]
  *                         k  = p*N_in_x + q
  *                         _temp1 = (((-1*pi)/(wavel*z))*((x-x1)**2+(y-y1)**2))             # <<<<<<<<<<<<<<
  *                         _temp2 = (cos(_temp1)+1j*sin(_temp1))*f*fac
  *                         sum_temp[k] = _temp2
  */
-                __pyx_t_10 = (-1.0 * __pyx_v_pi);
-                __pyx_t_28 = (__pyx_v_wavel * __pyx_v_z);
-                if (unlikely(__pyx_t_28 == 0)) {
+                __pyx_t_11 = (-1.0 * __pyx_v_pi);
+                __pyx_t_10 = (__pyx_v_wavel * __pyx_v_z);
+                if (unlikely(__pyx_t_10 == 0)) {
                   #ifdef WITH_THREAD
                   PyGILState_STATE __pyx_gilstate_save = __Pyx_PyGILState_Ensure();
                   #endif
@@ -3298,20 +3300,20 @@ static PyObject *__pyx_pf_20prop2d_cython_4_loop_exact_prop_2D_cython(CYTHON_UNU
                   #ifdef WITH_THREAD
                   __Pyx_PyGILState_Release(__pyx_gilstate_save);
                   #endif
-                  __PYX_ERR(0, 96, __pyx_L10_error)
+                  __PYX_ERR(0, 97, __pyx_L10_error)
                 }
-                __pyx_v__temp1 = ((__pyx_t_10 / __pyx_t_28) * (pow((__pyx_v_x - __pyx_v_x1), 2.0) + pow((__pyx_v_y - __pyx_v_y1), 2.0)));
+                __pyx_v__temp1 = ((__pyx_t_11 / __pyx_t_10) * (pow((__pyx_v_x - __pyx_v_x1), 2.0) + pow((__pyx_v_y - __pyx_v_y1), 2.0)));
 
-                /* "prop2d_cython_4_loop.pyx":97
+                /* "prop2d_cython_4_loop.pyx":98
  *                         k  = p*N_in_x + q
  *                         _temp1 = (((-1*pi)/(wavel*z))*((x-x1)**2+(y-y1)**2))
  *                         _temp2 = (cos(_temp1)+1j*sin(_temp1))*f*fac             # <<<<<<<<<<<<<<
  *                         sum_temp[k] = _temp2
  *             out_wave[i][j] = add_clean(sum_temp,N_in_t)
  */
-                __pyx_v__temp2 = __Pyx_c_prod_double(__Pyx_c_prod_double(__Pyx_c_sum_double(__pyx_t_double_complex_from_parts(cos(__pyx_v__temp1), 0), __Pyx_c_prod_double(__pyx_t_double_complex_from_parts(0, 1.0), __pyx_t_double_complex_from_parts(sin(__pyx_v__temp1), 0))), __pyx_t_double_complex_from_parts(__pyx_v_f, 0)), __pyx_v_fac);
+                __pyx_v__temp2 = __Pyx_c_prod_double(__Pyx_c_prod_double(__Pyx_c_sum_double(__pyx_t_double_complex_from_parts(cos(__pyx_v__temp1), 0), __Pyx_c_prod_double(__pyx_t_double_complex_from_parts(0, 1.0), __pyx_t_double_complex_from_parts(sin(__pyx_v__temp1), 0))), __pyx_v_f), __pyx_v_fac);
 
-                /* "prop2d_cython_4_loop.pyx":98
+                /* "prop2d_cython_4_loop.pyx":99
  *                         _temp1 = (((-1*pi)/(wavel*z))*((x-x1)**2+(y-y1)**2))
  *                         _temp2 = (cos(_temp1)+1j*sin(_temp1))*f*fac
  *                         sum_temp[k] = _temp2             # <<<<<<<<<<<<<<
@@ -3323,7 +3325,7 @@ static PyObject *__pyx_pf_20prop2d_cython_4_loop_exact_prop_2D_cython(CYTHON_UNU
             }
           }
 
-          /* "prop2d_cython_4_loop.pyx":87
+          /* "prop2d_cython_4_loop.pyx":88
  *     for i in range(N_out_x):
  *         for j in range(N_out_y):
  *             with nogil:             # <<<<<<<<<<<<<<
@@ -3349,7 +3351,7 @@ static PyObject *__pyx_pf_20prop2d_cython_4_loop_exact_prop_2D_cython(CYTHON_UNU
           }
       }
 
-      /* "prop2d_cython_4_loop.pyx":99
+      /* "prop2d_cython_4_loop.pyx":100
  *                         _temp2 = (cos(_temp1)+1j*sin(_temp1))*f*fac
  *                         sum_temp[k] = _temp2
  *             out_wave[i][j] = add_clean(sum_temp,N_in_t)             # <<<<<<<<<<<<<<
@@ -3361,7 +3363,7 @@ static PyObject *__pyx_pf_20prop2d_cython_4_loop_exact_prop_2D_cython(CYTHON_UNU
     }
   }
 
-  /* "prop2d_cython_4_loop.pyx":100
+  /* "prop2d_cython_4_loop.pyx":101
  *                         sum_temp[k] = _temp2
  *             out_wave[i][j] = add_clean(sum_temp,N_in_t)
  *     return             # <<<<<<<<<<<<<<
@@ -3373,7 +3375,7 @@ static PyObject *__pyx_pf_20prop2d_cython_4_loop_exact_prop_2D_cython(CYTHON_UNU
   /* "prop2d_cython_4_loop.pyx":40
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * def exact_prop_2D_cython(double[:,:] in_wave, double complex [:,:] out_wave,\             # <<<<<<<<<<<<<<
+ * def exact_prop_2D_cython(double complex [:,:] in_wave, double complex [:,:] out_wave,\             # <<<<<<<<<<<<<<
  *                         double L_in, double L_out, double x_out_off, double y_out_off,\
  *                          double wavel, double z):
  */
@@ -19972,7 +19974,7 @@ static int __Pyx_InitCachedConstants(void) {
   /* "prop2d_cython_4_loop.pyx":40
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * def exact_prop_2D_cython(double[:,:] in_wave, double complex [:,:] out_wave,\             # <<<<<<<<<<<<<<
+ * def exact_prop_2D_cython(double complex [:,:] in_wave, double complex [:,:] out_wave,\             # <<<<<<<<<<<<<<
  *                         double L_in, double L_out, double x_out_off, double y_out_off,\
  *                          double wavel, double z):
  */
@@ -20389,7 +20391,7 @@ if (!__Pyx_RefNanny) {
   /* "prop2d_cython_4_loop.pyx":40
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * def exact_prop_2D_cython(double[:,:] in_wave, double complex [:,:] out_wave,\             # <<<<<<<<<<<<<<
+ * def exact_prop_2D_cython(double complex [:,:] in_wave, double complex [:,:] out_wave,\             # <<<<<<<<<<<<<<
  *                         double L_in, double L_out, double x_out_off, double y_out_off,\
  *                          double wavel, double z):
  */
@@ -23590,29 +23592,6 @@ fail:
 no_fail:
     __Pyx_RefNannyFinishContext();
     return retval;
-}
-
-/* ObjectToMemviewSlice */
-        static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dsds_double(PyObject *obj, int writable_flag) {
-    __Pyx_memviewslice result = { 0, 0, { 0 }, { 0 }, { 0 } };
-    __Pyx_BufFmt_StackElem stack[1];
-    int axes_specs[] = { (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_STRIDED), (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_STRIDED) };
-    int retcode;
-    if (obj == Py_None) {
-        result.memview = (struct __pyx_memoryview_obj *) Py_None;
-        return result;
-    }
-    retcode = __Pyx_ValidateAndInit_memviewslice(axes_specs, 0,
-                                                 PyBUF_RECORDS_RO | writable_flag, 2,
-                                                 &__Pyx_TypeInfo_double, stack,
-                                                 &result, obj);
-    if (unlikely(retcode == -1))
-        goto __pyx_fail;
-    return result;
-__pyx_fail:
-    result.memview = NULL;
-    result.data = NULL;
-    return result;
 }
 
 /* ObjectToMemviewSlice */
