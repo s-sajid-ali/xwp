@@ -8,7 +8,7 @@ setup(
     ext_modules=[
         Extension('prop2d_cython_4_loop',
         sources=['prop2d_cython_4_loop.pyx'],
-        extra_compile_args=['-O3','-fopenmp','-xcore-avx2'],
+        extra_compile_args=['-O3','-fopenmp','-mavx'],
         language='c')
         ],
     

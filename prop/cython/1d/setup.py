@@ -8,7 +8,7 @@ setup(
     ext_modules=[
         Extension('prop1d_cython',
         sources=['prop1d_cython.pyx'],
-        extra_compile_args=['-O3','-fopenmp','-xcore-avx2','-I/opt/intel/compilers_and_libraries_2018.3.222/linux/compiler/lib/intel64/libimf.a'],
+        extra_compile_args=['-O3','-fopenmp','-mavx'],
         language='c')
         ],
     
