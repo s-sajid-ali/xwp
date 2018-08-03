@@ -20,6 +20,7 @@ import numpy as np
 cimport numpy as cnp
 from libc.math cimport sqrt, cos, sin
 from libc.stdlib cimport malloc, free
+from tqdm import trange
 cimport openmp
 cimport cython
 from cython.parallel import prange
@@ -90,7 +91,7 @@ def exact_prop_2D_cython(double complex[:,:] in_wave, double complex [:,:] out_w
     add_clean(sum_temp,N_in_t)
     
     
-    for i in range(N_out_t):
+    for i in trange(N_out_t):
         x1 = out_domain[i][0]
         y1 = out_domain[i][1]
         p1 = indices[i][0]
