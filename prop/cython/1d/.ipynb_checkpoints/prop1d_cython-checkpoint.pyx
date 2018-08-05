@@ -73,7 +73,9 @@ cpdef exact_prop_cython(double complex [:] in_wave, double complex [:] out_wave,
     
     '''
     sum_temp    : this 1D array will hold the values that need to be summed from the inner loop.
-    result_temp : this holds the partial sum as the values of sum_temp are added in parallel
+    res_temp    : this holds the partial sum as the values of sum_temp are added in parallel.
+    res_threads : number of threads used to sum the result
+    res         : temporary varible to flush the sum_temp 
     '''
     cdef double complex *sum_temp = <double complex*> malloc(N_in * sizeof(double complex))
     

@@ -2897,8 +2897,8 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
  */
   __pyx_v_fac = __Pyx_c_prod_double(__pyx_t_double_complex_from_parts((__pyx_v_step_in / sqrt((__pyx_v_wavel * __pyx_v_z))), 0), __pyx_v_fac1);
 
-  /* "prop1d_cython.pyx":78
- *     result_temp : this holds the partial sum as the values of sum_temp are added in parallel
+  /* "prop1d_cython.pyx":80
+ *     res         : temporary varible to flush the sum_temp
  *     '''
  *     cdef double complex *sum_temp = <double complex*> malloc(N_in * sizeof(double complex))             # <<<<<<<<<<<<<<
  * 
@@ -2906,7 +2906,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
  */
   __pyx_v_sum_temp = ((__pyx_t_double_complex *)malloc((__pyx_v_N_in * (sizeof(__pyx_t_double_complex)))));
 
-  /* "prop1d_cython.pyx":81
+  /* "prop1d_cython.pyx":83
  * 
  *     cdef int res_threads
  *     res_threads = 30             # <<<<<<<<<<<<<<
@@ -2915,7 +2915,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
  */
   __pyx_v_res_threads = 30;
 
-  /* "prop1d_cython.pyx":82
+  /* "prop1d_cython.pyx":84
  *     cdef int res_threads
  *     res_threads = 30
  *     cdef double complex *res_temp = <double complex*> malloc(res_threads * sizeof(double complex))             # <<<<<<<<<<<<<<
@@ -2924,7 +2924,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
  */
   __pyx_v_res_temp = ((__pyx_t_double_complex *)malloc((__pyx_v_res_threads * (sizeof(__pyx_t_double_complex)))));
 
-  /* "prop1d_cython.pyx":84
+  /* "prop1d_cython.pyx":86
  *     cdef double complex *res_temp = <double complex*> malloc(res_threads * sizeof(double complex))
  *     cdef double complex res
  *     res  = 0+0j             # <<<<<<<<<<<<<<
@@ -2933,7 +2933,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
  */
   __pyx_v_res = __Pyx_c_sum_double(__pyx_t_double_complex_from_parts(0, 0), __pyx_t_double_complex_from_parts(0, 0.0));
 
-  /* "prop1d_cython.pyx":85
+  /* "prop1d_cython.pyx":87
  *     cdef double complex res
  *     res  = 0+0j
  *     add_clean(sum_temp, res_temp, &res, N_in, res_threads)             # <<<<<<<<<<<<<<
@@ -2942,7 +2942,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
  */
   __pyx_f_13prop1d_cython_add_clean(__pyx_v_sum_temp, __pyx_v_res_temp, (&__pyx_v_res), __pyx_v_N_in, __pyx_v_res_threads);
 
-  /* "prop1d_cython.pyx":87
+  /* "prop1d_cython.pyx":89
  *     add_clean(sum_temp, res_temp, &res, N_in, res_threads)
  * 
  *     for i in range(N_out):             # <<<<<<<<<<<<<<
@@ -2954,7 +2954,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
   for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_11; __pyx_t_12+=1) {
     __pyx_v_i = __pyx_t_12;
 
-    /* "prop1d_cython.pyx":88
+    /* "prop1d_cython.pyx":90
  * 
  *     for i in range(N_out):
  *         x1 = out_domain[i]             # <<<<<<<<<<<<<<
@@ -2964,7 +2964,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
     __pyx_t_13 = __pyx_v_i;
     __pyx_v_x1 = (*__Pyx_BufPtrStrided1d(__pyx_t_5numpy_float64_t *, __pyx_pybuffernd_out_domain.rcbuffer->pybuffer.buf, __pyx_t_13, __pyx_pybuffernd_out_domain.diminfo[0].strides));
 
-    /* "prop1d_cython.pyx":89
+    /* "prop1d_cython.pyx":91
  *     for i in range(N_out):
  *         x1 = out_domain[i]
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -2979,7 +2979,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
         #endif
         /*try:*/ {
 
-          /* "prop1d_cython.pyx":90
+          /* "prop1d_cython.pyx":92
  *         x1 = out_domain[i]
  *         with nogil:
  *             for j in prange(N_in, num_threads = 10):             # <<<<<<<<<<<<<<
@@ -3012,7 +3012,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
                               __pyx_v__temp1 = ((double)__PYX_NAN());
                               __pyx_v_x = ((double)__PYX_NAN());
 
-                              /* "prop1d_cython.pyx":91
+                              /* "prop1d_cython.pyx":93
  *         with nogil:
  *             for j in prange(N_in, num_threads = 10):
  *                 f =   in_wave[j]             # <<<<<<<<<<<<<<
@@ -3022,7 +3022,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
                               __pyx_t_17 = __pyx_v_j;
                               __pyx_v_f = (*((__pyx_t_double_complex *) ( /* dim=0 */ (__pyx_v_in_wave.data + __pyx_t_17 * __pyx_v_in_wave.strides[0]) )));
 
-                              /* "prop1d_cython.pyx":92
+                              /* "prop1d_cython.pyx":94
  *             for j in prange(N_in, num_threads = 10):
  *                 f =   in_wave[j]
  *                 x = in_domain[j]             # <<<<<<<<<<<<<<
@@ -3032,7 +3032,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
                               __pyx_t_18 = __pyx_v_j;
                               __pyx_v_x = (*__Pyx_BufPtrStrided1d(__pyx_t_5numpy_float64_t *, __pyx_pybuffernd_in_domain.rcbuffer->pybuffer.buf, __pyx_t_18, __pyx_pybuffernd_in_domain.diminfo[0].strides));
 
-                              /* "prop1d_cython.pyx":93
+                              /* "prop1d_cython.pyx":95
  *                 f =   in_wave[j]
  *                 x = in_domain[j]
  *                 _temp1 = (((-1*pi)/(wavel*z))*(x-x1)**2)             # <<<<<<<<<<<<<<
@@ -3041,7 +3041,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
  */
                               __pyx_v__temp1 = (((-1.0 * __pyx_v_pi) / (__pyx_v_wavel * __pyx_v_z)) * pow((__pyx_v_x - __pyx_v_x1), 2.0));
 
-                              /* "prop1d_cython.pyx":94
+                              /* "prop1d_cython.pyx":96
  *                 x = in_domain[j]
  *                 _temp1 = (((-1*pi)/(wavel*z))*(x-x1)**2)
  *                 sum_temp[j] = (cos(_temp1)+1j*sin(_temp1))*f*fac             # <<<<<<<<<<<<<<
@@ -3062,7 +3062,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
           #endif
         }
 
-        /* "prop1d_cython.pyx":89
+        /* "prop1d_cython.pyx":91
  *     for i in range(N_out):
  *         x1 = out_domain[i]
  *         with nogil:             # <<<<<<<<<<<<<<
@@ -3081,7 +3081,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
         }
     }
 
-    /* "prop1d_cython.pyx":95
+    /* "prop1d_cython.pyx":97
  *                 _temp1 = (((-1*pi)/(wavel*z))*(x-x1)**2)
  *                 sum_temp[j] = (cos(_temp1)+1j*sin(_temp1))*f*fac
  *         add_clean(sum_temp, res_temp, &out_wave[i], N_in, res_threads)             # <<<<<<<<<<<<<<
@@ -3091,7 +3091,7 @@ static PyObject *__pyx_f_13prop1d_cython_exact_prop_cython(__Pyx_memviewslice __
     __pyx_f_13prop1d_cython_add_clean(__pyx_v_sum_temp, __pyx_v_res_temp, (&(*((__pyx_t_double_complex *) ( /* dim=0 */ (__pyx_v_out_wave.data + __pyx_t_19 * __pyx_v_out_wave.strides[0]) )))), __pyx_v_N_in, __pyx_v_res_threads);
   }
 
-  /* "prop1d_cython.pyx":96
+  /* "prop1d_cython.pyx":98
  *                 sum_temp[j] = (cos(_temp1)+1j*sin(_temp1))*f*fac
  *         add_clean(sum_temp, res_temp, &out_wave[i], N_in, res_threads)
  *     return             # <<<<<<<<<<<<<<
