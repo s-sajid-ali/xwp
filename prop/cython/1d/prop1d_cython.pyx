@@ -8,22 +8,37 @@ from libc.math cimport sqrt, cos, sin
 from libc.stdlib cimport malloc, free
 cimport cython
 cimport openmp
-from cython.parallel import prange
-
+from cython.parallel import prange,threadid,parallel
 
 '''
-This function adds the elements of the input array and resets each element to 0.
+This function adds the elements of the input array and resets each element to 0. 
+Using 1 thread, set all elements of the sum_temp array to 0.
+Use multple threads to perform addition.
+Using 1 thread, combine the partial sums.
 '''
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef double complex add_clean(double complex *arr, int N):
+cdef double complex add_clean(double complex* arr, int N):
+    
+    cdef int sum_threads = 30
+    cdef double complex *sum_temp = <double complex*> malloc(sum_threads * sizeof(double complex))
+    cdef int k,thread_id
     cdef double complex out = 0+0j
-    cdef int k
-    for k in range(N):
-        out+=arr[k]
-        arr[k] = 0
-    return out
+    cdef int offset = int(N/sum_threads)
+    
+    for k in range(sum_threads):
+        sum_temp[k] = 0
+        
+    with nogil, parallel(num_threads = sum_threads):
+        thread_id = threadid()
+        for k in range(offset):
+            sum_temp[thread_id] += arr[k + offset*thread_id]
+            arr[k + offset*thread_id] = 0    
 
+    for k in range(sum_threads):
+        out+=sum_temp[k]
+    return out
+    
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
