@@ -10,7 +10,7 @@ setup(
         Extension(
             'prop2d_cython_2_loop',
             sources=['prop2d_cython_2_loop.pyx'],
-            extra_compile_args=['-O3','-fopenmp','-mavx'],
+            extra_compile_args=['-O3','-fopenmp','-march=ivybridge','-mavx'],
             language='c',
                  )
         ],
