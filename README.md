@@ -9,7 +9,8 @@ Code for evaluation of wave propagation using Fresnel/Fraunhofer approximation.
   - Single Fourier Transform
 - Fraunhofer integral
 
-#### To be implemented: 
+#### In Progress :
+- Finite Difference propagators. 
 - Fractional Fourier Transform based wave propagation.
 
 These propagators are tested for various regimes to glean their limits of validity.
