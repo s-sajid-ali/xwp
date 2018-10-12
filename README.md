@@ -8,8 +8,7 @@ Code for evaluation of wave propagation using Fresnel/Fraunhofer approximation.
   - Impulse Response
   - Single Fourier Transform
 - Fraunhofer integral
-- 1D Finite Difference propagators
-- 2D Finite Difference propagators
+- Finite Difference propagation in 1D/2D
 
 #### In Progress :
 - Fractional Fourier Transform based wave propagation.
