@@ -9,7 +9,7 @@ Code for evaluation of wave propagation. Tools for visualization of signals in p
     - Impulse Response
     - Single Fourier Transform
   - Fraunhofer integral
-  - Finite Difference propagation in 2D.
+  - Finite Difference propagation in 1D.
 
 - via custom install script (imported as binaries):  
   - Direct evaluation of fresnel integral in 1D and 2D in cython. 
