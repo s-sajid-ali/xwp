@@ -2,6 +2,7 @@ README.md
 setup.py
 xray_wave_propagators/__init__.py
 xray_wave_propagators/fft_utils.py
+xray_wave_propagators/finite_diff_1d.py
 xray_wave_propagators/propagators_1d.py
 xray_wave_propagators/propagators_2d.py
 xray_wave_propagators.egg-info/PKG-INFO
