@@ -155,7 +155,14 @@ def propFF(u,step,L1,wavel,z,fft_object = None):
 
 '''
 Warning : use is now Deprecated !
-Propogation using the Impulse Response function. The convention of shiftinng a function in realspace before performing the fourier transform which is used in the reference is followed here. Input convention as above. Use is deprecated since the implementation of 1FT for ranges that are too large for TF but too small for FF. 
+Propogation using the Impulse Response function. The convention of shifting
+a function in realspace before performing the fourier transform which is 
+used in the reference is followed here.
+
+Input convention as above. 
+
+Use is deprecated since the implementation of 1FT for ranges that are 
+too large for TF but too small for FF. 
 '''
 def propIR(u,step,L,wavel,z,fft_object = None):
     M,N = np.shape(u)
@@ -197,12 +204,14 @@ def propIR(u,step,L,wavel,z,fft_object = None):
 '''
 Exact propagation in 2D. 
 
-First attempt at getting the logic correctly, optimized using cython/numba later.
+First attempt at getting the logic correctly,
+optimized using cython/numba later.
 
-Vectorized by performing the numerical integral at each output point using numexpr
-over the whole input array.
+Vectorized by performing the numerical integral at
+each output point using numexpr over the whole input array.
 
-(Note that the function changes the values of the out_wave instead of returning an array)
+(Note that the function changes the values of 
+out_wave instead of returning an array)
 
 
 in_wave   : profile of the beam at the input plane. 
@@ -252,13 +261,15 @@ def exact_prop(in_wave,out_wave,L_in,L_out,wavel,z):
 
 
 '''
-Exact propagation in 2D using numba by adding the @jit decorator & prange.
+Exact propagation in 2D using numba by 
+adding the @jit decorator & prange.
 
 Gives some speedup but it generally brittle to 
 explicit parallelization though it works here.
 
 
-(Note that the function changes the values of the out_wave instead of returning an array)
+(Note that the function changes the values of
+out_wave instead of returning an array)
 
 
 in_wave   : profile of the beam at the input plane. 

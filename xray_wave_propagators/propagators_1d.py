@@ -21,7 +21,9 @@ step       : is the sampling step size at the input plane.
 L1         : side length of the support.
 wavel      : the wavelength of the light
 z          : the propogation distance
-fft_object : (not implemented) to pass an FFTW object for evaluation of the FFT
+fft_object : (not implemented) to pass an FFTW object for
+             evaluation of the FFT
+
 Outputs -
 u     : beam profile at the output plane
 L1    : the side length of the support at the output plane.
@@ -40,7 +42,8 @@ def propTF(u,step,L1,wavel,z,fft_object = None) :
     return u,L1
 
 '''
-Propogation using the Single Fourier Transform approach. Input convention as above.
+Propogation using the Single Fourier Transform approach.
+Input convention as above.
 
 Inputs - 
 u     : profile of the beam at the input plane. 
@@ -48,7 +51,8 @@ step  : is the sampling step size at the input plane.
 L1    : side length of the support.
 wavel : the wavelength of the light
 z     :the propogation distance
-fft_object : (not implemented) to pass an FFTW object for evaluation of the FFT
+fft_object : (not implemented) to pass an FFTW object 
+             for evaluation of the FFT
 
 Outputs - 
 u     : beam profile at the output plane
@@ -92,7 +96,8 @@ step  : is the sampling step size at the input plane.
 L1    : side length of the support.
 wavel : the wavelength of the light
 z     :the propogation distance
-fft_object : (not implemented) to pass an FFTW object for evaluation of the FFT
+fft_object : (not implemented) to pass an FFTW object
+             for evaluation of the FFT
 
 Outputs -
 u     : beam profile at the output plane
@@ -120,7 +125,12 @@ def propFF(u,step,L1,wavel,z,fft_object = None):
 
 '''
 Warning : use is now Deprecated !
-Propogation using the Impulse Response function. The convention of shiftinng a function in realspace before performing the fourier transform which is used in the reference is followed here. Input convention as above. Use is deprecated since the implementation of 1FT for ranges that are too large for TF but too small for FF. 
+Propogation using the Impulse Response function. The convention of shiftinng
+a function in realspace before performing the fourier transform which is used
+in the reference is followed here. Input convention as above.
+
+Use is deprecated since the implementation of 1FT for ranges that are too
+large for TF but too small for FF. 
 '''
 def propIR(u,step,L,wavel,z,fft_object = None):
     N = np.shape(u)[0]
@@ -143,7 +153,8 @@ def propIR(u,step,L,wavel,z,fft_object = None):
 
 '''
 Exact propagation (accelerated using numba/numexpr) in 1D
-(Note that the function changes the values of the out_wave instead of returning an array)
+(Note that the function changes the values of out_wave
+instead of returning an array)
 
 
 in_wave   : profile of the beam at the input plane. 
@@ -174,7 +185,8 @@ def exact_prop_numba(in_wave,out_wave,L_in,L_out,wavel,z):
 
 '''
 Exact propagation in 1D
-(Note that the function changes the values of the out_wave instead of returning an array)
+(Note that the function changes the values of out_wave
+instead of returning an array)
 
 
 in_wave   : profile of the beam at the input plane. 
