@@ -21,7 +21,7 @@ step       : is the sampling step size at the input plane.
 L1         : side length of the support.
 wavel      : the wavelength of the light
 z          : the propogation distance
-fft_object : 
+fft_object : (not implemented) to pass an FFTW object for evaluation of the FFT
 Outputs -
 u     : beam profile at the output plane
 L1    : the side length of the support at the output plane.
@@ -48,6 +48,7 @@ step  : is the sampling step size at the input plane.
 L1    : side length of the support.
 wavel : the wavelength of the light
 z     :the propogation distance
+fft_object : (not implemented) to pass an FFTW object for evaluation of the FFT
 
 Outputs - 
 u     : beam profile at the output plane
@@ -91,6 +92,7 @@ step  : is the sampling step size at the input plane.
 L1    : side length of the support.
 wavel : the wavelength of the light
 z     :the propogation distance
+fft_object : (not implemented) to pass an FFTW object for evaluation of the FFT
 
 Outputs -
 u     : beam profile at the output plane
@@ -140,7 +142,16 @@ def propIR(u,step,L,wavel,z,fft_object = None):
 
 
 '''
-Exact propagation in 1D. 
+Exact propagation (accelerated using numba/numexpr) in 1D
+(Note that the function changes the values of the out_wave instead of returning an array)
+
+
+in_wave   : profile of the beam at the input plane. 
+out_wave  : array to be filled with values of wave at output plane
+L_in      : side length of the support at input plane
+L_out     : side length of the support at output plane
+wavel     : wavelength
+z         : the propogation distance
 '''
 @jit(nopython=True, parallel=True)
 def exact_prop_numba(in_wave,out_wave,L_in,L_out,wavel,z):
@@ -155,14 +166,23 @@ def exact_prop_numba(in_wave,out_wave,L_in,L_out,wavel,z):
             x = in_domain[j]
             f = in_wave[j]
             x1 = out_domain[i]
-            out_wave[i] += f*np.exp((-1j*pi*x*x)/(wavel*z))*np.exp((-1j*2*pi*x*x1)/(wavel*z))
-            #out_wave[i] += ne.evaluate('f*exp((-1j*pi*x*x)/(wavel*z))*exp((-1j*2*pi*x*x1)/(wavel*z))')
+            #out_wave[i] += f*np.exp((-1j*pi*x*x)/(wavel*z))*np.exp((-1j*2*pi*x*x1)/(wavel*z))
+            out_wave[i] += ne.evaluate('f*exp((-1j*pi*x*x)/(wavel*z))*exp((-1j*2*pi*x*x1)/(wavel*z))')
     out_wave *= (1/np.sqrt(1j*wavel*z))*step_in
     return
 
 
 '''
-Exact propagation in 1D. 
+Exact propagation in 1D
+(Note that the function changes the values of the out_wave instead of returning an array)
+
+
+in_wave   : profile of the beam at the input plane. 
+out_wave  : array to be filled with values of wave at output plane
+L_in      : side length of the support at input plane
+L_out     : side length of the support at output plane
+wavel     : wavelength
+z         : the propogation distance
 '''
 def exact_prop(in_wave,out_wave,L_in,L_out,wavel,z):
     pi = np.pi

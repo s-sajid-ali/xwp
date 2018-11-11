@@ -27,7 +27,8 @@ step       : is the sampling step size at the input plane.
 L1         : side length of the support.
 wavel      : the wavelength of the light
 z          : the propogation distance
-fft_object : 
+fft_object : to pass an FFTW object for evaluation of the FFT
+
 Outputs -
 u     : beam profile at the output plane
 L1    : the side length of the support at the output plane.
@@ -62,6 +63,7 @@ step  : is the sampling step size at the input plane.
 L1    : side length of the support.
 wavel : the wavelength of the light
 z     :the propogation distance
+fft_object : to pass an FFTW object for evaluation of the FFT
 
 Outputs - 
 u     : beam profile at the output plane
@@ -119,6 +121,7 @@ step  : is the sampling step size at the input plane.
 L1    : side length of the support.
 wavel : the wavelength of the light
 z     :the propogation distance
+fft_object : to pass an FFTW object for evaluation of the FFT
 
 Outputs -
 u     : beam profile at the output plane
@@ -198,6 +201,17 @@ First attempt at getting the logic correctly, optimized using cython/numba later
 
 Vectorized by performing the numerical integral at each output point using numexpr
 over the whole input array.
+
+(Note that the function changes the values of the out_wave instead of returning an array)
+
+
+in_wave   : profile of the beam at the input plane. 
+out_wave  : array to be filled with values of wave at output plane
+L_in      : side length of the support at input plane
+L_out     : side length of the support at output plane
+wavel     : wavelength
+z         : the propogation distance
+
 '''
 def exact_prop(in_wave,out_wave,L_in,L_out,wavel,z):
     pi = np.pi
@@ -243,6 +257,16 @@ Exact propagation in 2D using numba by adding the @jit decorator & prange.
 Gives some speedup but it generally brittle to 
 explicit parallelization though it works here.
 
+
+(Note that the function changes the values of the out_wave instead of returning an array)
+
+
+in_wave   : profile of the beam at the input plane. 
+out_wave  : array to be filled with values of wave at output plane
+L_in      : side length of the support at input plane
+L_out     : side length of the support at output plane
+wavel     : wavelength
+z         : the propogation distance
 '''
 @jit(nopython=True, parallel=True)
 def exact_prop_numba(in_wave,out_wave,L_in,L_out,wavel,z):
