@@ -10,3 +10,4 @@ xray_wave_propagators.egg-info/SOURCES.txt
 xray_wave_propagators.egg-info/dependency_links.txt
 xray_wave_propagators.egg-info/not-zip-safe
 xray_wave_propagators.egg-info/top_level.txt
+xray_wave_propagators/cython/install.sh

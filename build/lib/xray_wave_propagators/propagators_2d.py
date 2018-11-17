@@ -27,7 +27,8 @@ step       : is the sampling step size at the input plane.
 L1         : side length of the support.
 wavel      : the wavelength of the light
 z          : the propogation distance
-fft_object : 
+fft_object : to pass an FFTW object for evaluation of the FFT
+
 Outputs -
 u     : beam profile at the output plane
 L1    : the side length of the support at the output plane.
@@ -62,6 +63,7 @@ step  : is the sampling step size at the input plane.
 L1    : side length of the support.
 wavel : the wavelength of the light
 z     :the propogation distance
+fft_object : to pass an FFTW object for evaluation of the FFT
 
 Outputs - 
 u     : beam profile at the output plane
@@ -119,6 +121,7 @@ step  : is the sampling step size at the input plane.
 L1    : side length of the support.
 wavel : the wavelength of the light
 z     :the propogation distance
+fft_object : to pass an FFTW object for evaluation of the FFT
 
 Outputs -
 u     : beam profile at the output plane
@@ -152,7 +155,14 @@ def propFF(u,step,L1,wavel,z,fft_object = None):
 
 '''
 Warning : use is now Deprecated !
-Propogation using the Impulse Response function. The convention of shiftinng a function in realspace before performing the fourier transform which is used in the reference is followed here. Input convention as above. Use is deprecated since the implementation of 1FT for ranges that are too large for TF but too small for FF. 
+Propogation using the Impulse Response function. The convention of shifting
+a function in realspace before performing the fourier transform which is 
+used in the reference is followed here.
+
+Input convention as above. 
+
+Use is deprecated since the implementation of 1FT for ranges that are 
+too large for TF but too small for FF. 
 '''
 def propIR(u,step,L,wavel,z,fft_object = None):
     M,N = np.shape(u)
@@ -194,10 +204,23 @@ def propIR(u,step,L,wavel,z,fft_object = None):
 '''
 Exact propagation in 2D. 
 
-First attempt at getting the logic correctly, optimized using cython/numba later.
+First attempt at getting the logic correctly,
+optimized using cython/numba later.
 
-Vectorized by performing the numerical integral at each output point using numexpr
-over the whole input array.
+Vectorized by performing the numerical integral at
+each output point using numexpr over the whole input array.
+
+(Note that the function changes the values of 
+out_wave instead of returning an array)
+
+
+in_wave   : profile of the beam at the input plane. 
+out_wave  : array to be filled with values of wave at output plane
+L_in      : side length of the support at input plane
+L_out     : side length of the support at output plane
+wavel     : wavelength
+z         : the propogation distance
+
 '''
 def exact_prop(in_wave,out_wave,L_in,L_out,wavel,z):
     pi = np.pi
@@ -238,11 +261,23 @@ def exact_prop(in_wave,out_wave,L_in,L_out,wavel,z):
 
 
 '''
-Exact propagation in 2D using numba by adding the @jit decorator & prange.
+Exact propagation in 2D using numba by 
+adding the @jit decorator & prange.
 
 Gives some speedup but it generally brittle to 
 explicit parallelization though it works here.
 
+
+(Note that the function changes the values of
+out_wave instead of returning an array)
+
+
+in_wave   : profile of the beam at the input plane. 
+out_wave  : array to be filled with values of wave at output plane
+L_in      : side length of the support at input plane
+L_out     : side length of the support at output plane
+wavel     : wavelength
+z         : the propogation distance
 '''
 @jit(nopython=True, parallel=True)
 def exact_prop_numba(in_wave,out_wave,L_in,L_out,wavel,z):
