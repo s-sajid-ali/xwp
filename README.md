@@ -21,4 +21,8 @@ Code for evaluation of wave propagation. Tools for visualization of signals in p
 #### In Progress :
 - Fractional Fourier Transform based wave propagation.
 
-These propagators are tested for various regimes to glean their limits of validity.
+
+#### Note:
+All physical quantities have SI units. 
+The implementation of finite difference wave propagation is just for proof of concept purposes and is not optimized (or parallelized). 
+The direct wave propagation is somewhat optimized but much more can be done in terms of memeory reuse (so that the same part of the input wave is not repeatedly flushed from the cache).
