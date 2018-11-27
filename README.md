@@ -11,7 +11,7 @@ Code for evaluation of wave propagation. Tools for visualization of signals in p
   - Fraunhofer integral
   - Finite Difference propagation in 1D.
 
-- as part of the related xwp_cython package:  
+- as part of the related [xwp_cython](https://github.com/s-sajid-ali/xwp_cython) package:  
   - Direct evaluation of fresnel integral in 1D and 2D in cython. 
  
 - in jupyter notebooks :
