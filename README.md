@@ -1,4 +1,4 @@
-## xray_wave_propagators
+## xwp
 Code for evaluation of wave propagation. Tools for visualization of signals in phase-space.
 
 #### Currently implemented  :
