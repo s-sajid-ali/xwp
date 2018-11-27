@@ -1,1 +1,0 @@
-/xray_wave_propagators/cython/binaries/prop1d_cython.cpython-36m-x86_64-linux-gnu.so
