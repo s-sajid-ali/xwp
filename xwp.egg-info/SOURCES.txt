@@ -1,10 +1,12 @@
 README.md
 setup.py
 xwp/__init__.py
+xwp/exact_1d.py
+xwp/exact_2d.py
 xwp/fft_utils.py
 xwp/finite_diff_1d.py
-xwp/propagators_1d.py
-xwp/propagators_2d.py
+xwp/spectral_1d.py
+xwp/spectral_2d.py
 xwp.egg-info/PKG-INFO
 xwp.egg-info/SOURCES.txt
 xwp.egg-info/dependency_links.txt
