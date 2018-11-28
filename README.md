@@ -21,6 +21,12 @@ Code for evaluation of wave propagation. Tools for visualization of signals in p
 #### In Progress :
 - Fractional Fourier Transform based wave propagation.
 
+#### Requirements : 
+- Numpy & Scipy
+- Numexpr
+- Numba
+- PyFFTW
+- tqdm 
 
 #### Note:
 All physical quantities have SI units. 
