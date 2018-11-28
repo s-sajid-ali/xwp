@@ -26,6 +26,7 @@ Code for evaluation of wave propagation. Tools for visualization of signals in p
 - Numexpr
 - Numba
 - PyFFTW
+- dask
 - tqdm 
 
 #### Note:
