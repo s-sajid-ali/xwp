@@ -174,10 +174,8 @@ try:
         k = 2*np.pi/wavel
         x = np.linspace(-L/2.0,L/2.0,N)
 
-        h = ne.evaluate('(exp(1j*k*z)/(1j*wavel*z))*exp(((1j*k)/(2*z))*(x**2))')
-        #h = np.exp(1j*k*z)*np.exp(((1j*k)/(2*z))*(x**2))
-        #h = np.sqrt(1/(1j*wavel*z))*np.exp(((1j*k)/(2*z))*(x**2))
-
+        h = ne.evaluate('1/sqrt(1j*wavel*z)*exp(((1j*k)/(2*z))*(x**2))')
+    
         h = np.fft.fft(np.fft.fftshift(h))*step
         u = np.fft.fft(u)
         #u *= h

@@ -89,9 +89,7 @@ try:
                 x = in_domain[j]
                 f = in_wave[j]
                 x1 = out_domain[i]
-                out_wave[i] += f*np.exp((-1j*pi*x*x)/(wavel*z))*np.exp((-1j*2*pi*x*x1)/(wavel*z))
-                #out_wave[i] += ne.evaluate('f*exp((-1j*pi*x*x)/(wavel*z))*exp((-1j*2*pi*x*x1)/(wavel*z))')
-        out_wave *= (1/np.sqrt(1j*wavel*z))*step_in
+                out_wave[i] += f*np.exp((-1j*pi*(x-x1)**2)/(wavel*z))*(step_in/np.sqrt(1j*wavel*z))
         return
 except:
     pass
