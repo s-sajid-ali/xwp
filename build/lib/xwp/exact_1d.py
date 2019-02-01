@@ -85,7 +85,7 @@ try:
         out_domain = np.linspace(-L_out/2,L_out/2,N_out)
         step_in = L_in/N_in
         for i in prange(N_out):
-            for j in range(N_in):
+            for j in prange(N_in):
                 x = in_domain[j]
                 f = in_wave[j]
                 x1 = out_domain[i]
