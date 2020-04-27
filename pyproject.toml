@@ -1,0 +1,25 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "xwp"
+author = "Sajid Ali"
+author-email = "sajidsyed2021@u.northwestern.edu"
+home-page = "https://github.com/s-sajid-ali/xwp"
+
+requires = [
+	"numpy",
+	"scipy",
+	"scikit-image",
+	"numexpr",
+	"numba",
+	"pyfftw",
+	"dask",
+	"quadpy",
+	"tftb",
+	"tqdm",
+        "matplotlib"
+	]
+
+requires-python=">=3.5"

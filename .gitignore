@@ -1,0 +1,21 @@
+# Byte-compiled 
+__pycache__/
+*.pyc
+
+# Distribution / packaging
+build/
+dist/
+lib/
+lib64/
+wheels/
+*.egg-info/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Data
+*.dat
+*.dat.info
+*.h5
+
+

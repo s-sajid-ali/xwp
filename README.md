@@ -21,13 +21,8 @@ Code for evaluation of wave propagation. Tools for visualization of signals in p
 #### In Progress :
 - Fractional Fourier Transform based wave propagation.
 
-#### Requirements : 
-- Numpy & Scipy
-- Numexpr
-- Numba
-- PyFFTW
-- dask
-- tqdm 
+#### Installation : 
+Clone the directory via git clone and run `pip install .`. Note that `xwp` uses [flit](https://github.com/takluyver/flit/) as it's build system.
 
 #### Note:
 All physical quantities have SI units. 
