@@ -20,42 +20,21 @@ wavel     : wavelength
 z         : the propogation distance
 '''
 
-try:
-    import numexpr as ne
-    def exact_prop(in_wave,out_wave,L_in,L_out,wavel,z):
-        pi = np.pi
-        N_in = np.shape(in_wave)[0]
-        in_domain = np.linspace(-L_in/2,L_in/2,N_in)
-        N_out = np.shape(out_wave)[0]
-        out_domain = np.linspace(-L_out/2,L_out/2,N_out)
-        step_in = L_in/N_in
-        for i in range(N_out):
-            for j in range(N_in):
-                x = in_domain[j]
-                f = in_wave[j]
-                x1 = out_domain[i]
-                #out_wave[i] += f*np.exp((-1j*pi*x*x)/(wavel*z))*np.exp((-1j*2*pi*x*x1)/(wavel*z))
-                out_wave[i] += ne.evaluate('f*exp((-1j*pi*x*x)/(wavel*z))*exp((-1j*2*pi*x*x1)/(wavel*z))')
-        out_wave *= (1/np.sqrt(1j*wavel*z))*step_in
-        return
-
-except:
-    def exact_prop(in_wave,out_wave,L_in,L_out,wavel,z):
-        pi = np.pi
-        N_in = np.shape(in_wave)[0]
-        in_domain = np.linspace(-L_in/2,L_in/2,N_in)
-        N_out = np.shape(out_wave)[0]
-        out_domain = np.linspace(-L_out/2,L_out/2,N_out)
-        step_in = L_in/N_in
-        for i in range(N_out):
-            for j in range(N_in):
-                x = in_domain[j]
-                f = in_wave[j]
-                x1 = out_domain[i]
-                out_wave[i] += f*np.exp((-1j*pi*x*x)/(wavel*z))*np.exp((-1j*2*pi*x*x1)/(wavel*z))
-                #out_wave[i] += ne.evaluate('f*exp((-1j*pi*x*x)/(wavel*z))*exp((-1j*2*pi*x*x1)/(wavel*z))')
-        out_wave *= (1/np.sqrt(1j*wavel*z))*step_in
-        return
+def exact_prop(in_wave,out_wave,L_in,L_out,wavel,z):
+    pi = np.pi
+    N_in = np.shape(in_wave)[0]
+    in_domain = np.linspace(-L_in/2,L_in/2,N_in)
+    N_out = np.shape(out_wave)[0]
+    out_domain = np.linspace(-L_out/2,L_out/2,N_out)
+    step_in = L_in/N_in
+    for i in range(N_out):
+        for j in range(N_in):
+            x = in_domain[j]
+            f = in_wave[j]
+            x1 = out_domain[i]
+            out_wave[i] += f*np.exp((-1j*pi*x*x)/(wavel*z))*np.exp((-1j*2*pi*x*x1)/(wavel*z))
+    out_wave *= (1/np.sqrt(1j*wavel*z))*step_in
+    return
 
     
     
