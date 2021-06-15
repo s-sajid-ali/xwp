@@ -18,9 +18,6 @@ Code for evaluation of wave propagation. Tools for visualization of signals in p
   - Finite Difference propagation in 2D.
   - Wigner Distribution Function for 1D signals.
 
-#### In Progress :
-- Fractional Fourier Transform based wave propagation.
-
 #### Installation : 
 Clone the directory via git clone and run `pip install .`. Note that `xwp` uses [flit](https://github.com/takluyver/flit/) as it's build system.
 
